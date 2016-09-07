@@ -1,9 +1,5 @@
 # DBC Sinatra Overflow
 
-## Learning Competencies
-
-* Given a specification, implement an HTTP application that generates appropriate responses to requests using Sinatra or Rails
-
 ## Summary
 
 Let's get our feet wet building a substantial Sinatra application from the ground up: a [StackOverflow](http://stackoverflow.com) clone.
