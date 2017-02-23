@@ -7,7 +7,7 @@
   <div class="best-answer answers">
     <% if best_answer %>
       <span>
-      votes <%= vote_total(best_answer) %>
+      votes <%= best_answer.vote_total %>
       </span>
       <span><%= best_answer.description %></span>
       <span><%= best_answer.author.username %></span>
@@ -18,13 +18,13 @@
     <% next if answer == best_answer %>
       <div class="answer">
         <span>
-          votes <%= vote_total(answer) %>
+          votes <%= answer.vote_total %>
         </span>
         <span><%= answer.description %></span>
         <span><%= answer.author.username %></span>
         <div class="comments">
           <% answer.comments.each do |comment| %>
-            <span>votes <%= vote_total(comment) %></span>
+            <span>votes <%= comment.vote_total %></span>
             <span><%= comment.description %></span>
             <span><%= comment.author.username %></span>
           <% end %>
