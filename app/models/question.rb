@@ -8,6 +8,8 @@ class Question < ActiveRecord::Base
   validates :title, :description, :author_id, presence: true
 
   def vote_total
-    self.votes.reduce{ |sum, vote| vote.value }
+    sum = 0
+    votes.each{ |vote| sum += vote.value }
+    sum
   end
 end

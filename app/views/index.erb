@@ -1,7 +1,7 @@
 <div class="content">
 
 <h1>DBC Overflow</h1>
-<% Question.most_recent.each do |question| %>
+<% Question.all.each do |question| %>
   <span>
     <span>votes<%= question.votes.count %></span>
     <span>answers<%= question.answers.count %></span>

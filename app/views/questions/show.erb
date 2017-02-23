@@ -6,30 +6,38 @@
   </div>
   <div class="best-answer answers">
     <% if best_answer %>
+      <h3>Best Answer</h3>
       <span>
       votes <%= best_answer.vote_total %>
       </span>
       <span><%= best_answer.description %></span>
-      <span><%= best_answer.author.username %></span>
+      <span>User: <%= best_answer.author.username %></span>
     <% end %>
   </div>
   <div class="answers">
-    <% current_question.answers do |answer| %>
+    <h3>Answers</h3>
+    <ul>
+    <% current_question.answers.each do |answer| %>
     <% next if answer == best_answer %>
-      <div class="answer">
+      <li class="answer">
         <span>
           votes <%= answer.vote_total %>
         </span>
         <span><%= answer.description %></span>
         <span><%= answer.author.username %></span>
-        <div class="comments">
+        <ul class="comments">
+          <h4>Comments <%= answer.comments.count %></h4>
+
           <% answer.comments.each do |comment| %>
+          <li>
             <span>votes <%= comment.vote_total %></span>
             <span><%= comment.description %></span>
             <span><%= comment.author.username %></span>
           <% end %>
-        </div>
-      </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
 
     <% end %>
   </div>
