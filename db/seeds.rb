@@ -1,43 +1,37 @@
-user2 = User.create(username: "Frob", email: "Frob@dbc.com", hashed_password: "password")
-user2.questions.create(title: "Question about stuff", description: "This is a question")
-user = User.create(username: "Bob", email: "bob@dbc.com", hashed_password: "password")
-q = Question.first
-user.comments.create(description: "This is a comment", commentable: q)
+User.delete_all
+Question.delete_all
+Answer.delete_all
+Comment.delete_all
+Vote.delete_all
+
 users = []
 5.times {users << User.create!(
 						username: Faker::Internet.user_name(Faker::HarryPotter.character),
 						email: Faker::Internet.free_email,
-						hashed_password: "password"
-
-	)}
+						password: "password")}
 
 5.times {users << User.create!(
 						username: Faker::Internet.user_name(Faker::LordOfTheRings.character),
 						email: Faker::Internet.free_email,
-						hashed_password: "password"
-
-	)}
+						password: "password")}
 
 5.times {users << User.create!(
 						username: Faker::Internet.user_name(Faker::StarWars.character),
 						email: Faker::Internet.free_email,
-						hashed_password: "password"
+						password: "password")}
 
-	)}
-puts users
+
 questions = []
 20.times {questions << Question.create!(
 						title: Faker::TwinPeaks.quote, 
 						description: Faker::Hipster.sentences, 
-						author_id: users.sample.id
-	)}
+						author_id: users.sample.id)}
 
 answers = []
 50.times { answers << Answer.create!(
 						description: Faker::Hacker.say_something_smart,
 						author_id: rand(1..50),
-						question_id: rand(1..50)
-						)}
+						question_id: rand(1..50))}
 
 questions.map do |question| 
 	question.best_answer = rand(1..50)
@@ -45,11 +39,24 @@ questions.map do |question|
 end
 
 comments = []
-35.times {comments << Comment.create!(description: Faker::ChuckNorris.fact, author_id: rand(1..15))}
+15.times {comments << Comment.create!(
+						commentable: questions.sample, 
+						description: Faker::ChuckNorris.fact, 
+						author_id: rand(1..15))}
+15.times {comments << Comment.create!(
+						commentable: answers.sample, 
+						description: Faker::ChuckNorris.fact, 
+						author_id: rand(1..15))}
 
-
-votes = []
-60.times {votes << Vote.create!(
+30.times {Vote.create!(
+						votable: questions.sample,
 						user_id: rand(1..15),
-						value: [1, -1].sample
-						)}
+						value: [1, -1].sample)}
+30.times {Vote.create!(
+						votable: answers.sample,
+						user_id: rand(1..15),
+						value: [1, -1].sample)}
+30.times {Vote.create!(
+						votable: comments.sample,
+						user_id: rand(1..15),
+						value: [1, -1].sample)}}
