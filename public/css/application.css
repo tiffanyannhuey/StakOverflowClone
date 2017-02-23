@@ -125,3 +125,9 @@ form#posts input[type='submit'] {
   vertical-align: sub;
   padding: 1px 0px 0px 0px;
 }
+
+.label, .form-textarea{
+  display:block;
+}
+
+
