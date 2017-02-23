@@ -30,22 +30,22 @@ questions = []
 answers = []
 50.times { answers << Answer.create!(
 						description: Faker::Hacker.say_something_smart,
-						author_id: rand(1..50),
+						author_id: rand(1..15),
 						question_id: rand(1..50))}
 
-questions.map do |question| 
+questions.each do |question|
 	question.best_answer = rand(1..50)
 	question.save
 end
 
 comments = []
 15.times {comments << Comment.create!(
-						commentable: questions.sample, 
-						description: Faker::ChuckNorris.fact, 
+						commentable: questions.sample,
+						description: Faker::ChuckNorris.fact,
 						author_id: rand(1..15))}
 15.times {comments << Comment.create!(
-						commentable: answers.sample, 
-						description: Faker::ChuckNorris.fact, 
+						commentable: answers.sample,
+						description: Faker::ChuckNorris.fact,
 						author_id: rand(1..15))}
 
 30.times {Vote.create!(
@@ -59,4 +59,4 @@ comments = []
 30.times {Vote.create!(
 						votable: comments.sample,
 						user_id: rand(1..15),
-						value: [1, -1].sample)}}
+						value: [1, -1].sample)}

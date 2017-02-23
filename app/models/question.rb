@@ -7,4 +7,9 @@ class Question < ActiveRecord::Base
 
   validates :title, :description, :author_id, presence: true
 
+  def vote_total
+    sum = 0
+    votes.each{ |vote| sum += vote.value }
+    sum
+  end
 end

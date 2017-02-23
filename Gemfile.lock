@@ -16,6 +16,7 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     arel (7.1.4)
     backports (3.6.8)
+    bcrypt (3.1.11)
     capybara (2.12.1)
       addressable
       mime-types (>= 1.16)
@@ -93,6 +94,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   activesupport
+  bcrypt
   capybara
   factory_girl
   faker
@@ -107,4 +109,5 @@ DEPENDENCIES
   thin
 
 BUNDLED WITH
-   1.13.6
+   1.14.4
+

@@ -1,8 +1,11 @@
+
+# New
 get '/questions/new' do
   @question = Question.new()
   erb :'questions/new'
 end
 
+# Create
 post '/questions' do
   # params[:question][:author_id] = 1
   @question = Question.new(params[:question])
@@ -14,6 +17,10 @@ post '/questions' do
   end
 end
 
+# Show
 get '/questions/:id' do
+
+  puts current_question
+  puts current_question.answers
   erb :'questions/show'
 end
