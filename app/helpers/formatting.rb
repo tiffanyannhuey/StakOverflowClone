@@ -8,8 +8,4 @@ helpers do
     @best_answer ||= Answer.find_by(id: current_question.best_answer)
   end
 
-  def vote_total(votable)
-    votable.votes.reduce{ |sum, vote| vote.value }
-  end
-
 end
