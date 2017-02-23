@@ -1,0 +1,45 @@
+<div class='content'>
+
+  <h1><%= current_question.title %></h1>
+  <div class="question">
+    <%= current_question.description %>
+  </div>
+  <div class="best-answer answers">
+    <% if best_answer %>
+      <h3>Best Answer</h3>
+      <span>
+      votes <%= best_answer.vote_total %>
+      </span>
+      <span><%= best_answer.description %></span>
+      <span>User: <%= best_answer.author.username %></span>
+    <% end %>
+  </div>
+  <div class="answers">
+    <h3>Answers</h3>
+    <ul>
+    <% current_question.answers.each do |answer| %>
+    <% next if answer == best_answer %>
+      <li class="answer">
+        <span>
+          votes <%= answer.vote_total %>
+        </span>
+        <span><%= answer.description %></span>
+        <span><%= answer.author.username %></span>
+        <ul class="comments">
+          <h4>Comments <%= answer.comments.count %></h4>
+
+          <% answer.comments.each do |comment| %>
+          <li>
+            <span>votes <%= comment.vote_total %></span>
+            <span><%= comment.description %></span>
+            <span><%= comment.author.username %></span>
+          <% end %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <% end %>
+  </div>
+
+</div>

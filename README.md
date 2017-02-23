@@ -1,146 +1,85 @@
-# AJAXifying Hacker News
+# DBC Sinatra Overflow
 
 ## Summary
 
-In this challenge, you'll be AJAX-ifying a working Sinatra app. By the end of
-today, your Hacker News clone will allow users to vote on posts, delete posts,
-create new posts, and sort all posts without ever refreshing the page.
+We're going to build a substantial Sinatra application from the ground up: a [StackOverflow](http://stackoverflow.com) clone.  The goal of this challenge is to build a well-structured Sinatra application with a good mixture of front-end and back-end features.  Focus on defining clear routes, creating clean templates, and enhancing your application with AJAX.  Before we jump in, peruse StackOverflow to understand its core features.
 
-To get started, download the skeleton, install your dependencies, and create
-and seed your database.
+### Objectives
+The requirements for the application are listed below.  They are deliberately ambiguous.  This gives us both flexibility in our implementation and because clarifying ambiguous requirements is at least 30% of an engineer's job.  At. Least.
+
+- Users can post questions.  Other users can answer them.
+- Users can comment on both questions and answers.  Like StackOverflow, the comments should just be displayed in a flat list.
+- The user who posted a question can declare one of the user-submitted answers to be the best answer.
+- Users can upvote and downvote questions, answers, and comments—only one vote per user for each question, answer, and comment.
+- Users cannot add a question, answer, or comment or vote unless they're logged in, but they can view all of the above when logged out.
+- *Stretch:*  Sort answers with the answer selected as the best answer first, followed by the most highly voted.  Sort comments chronologically with oldest first.
+- *Stretch:*  Users can see questions sorted three ways: highest-voted, most recent, and "trending".
+
 
 ## Releases
+### Release 0:  Strategy and Team Norms
+Before diving too deeply into the code, our team should be clear on three things:
 
-### Release 0 : Voting
-
-Press the vote button next to a post. You'll notice the page refreshes, and the
-points count of the post has increased. You'll also notice in your shotgun
-window that your server had to make 21 SQL queries when the page refreshed!
-Your job is to speed up the load time by using AJAX. If done correctly, the act
-of clicking a vote button will not cause the entire page to refresh, but
-instead only update the color of the button — while still updating the
-database.
-
-Here's the basic flow of this particular AJAX request:
-
-1. You should bind an event listener to any button tag of the vote-button class
-2. To stop a client refresh from occuring, the provided callback function should prevent the default behavior of clicking a link.
-3. It should then make an AJAX request to the server, hitting the post '/posts/:id/vote' route with the right id value.
-4. The server should update the vote total of the given post in the database.
-5. The server response should include everything the client (your JS callback function) needs to update the DOM..
-6. The client, after being notified of a successful response by the server, should update the vote count and change the color of the given vote button to red.
-
-You'll need to alter the post '/posts/:id/vote' route  and write some custom JavaScript and jQuery to get this working. Here's the basic syntax for an AJAX request using jQuery.
-
-```javascript
-  // $.ajax takes a hashmap of options as an argument.
-  var ajaxRequest = $.ajax({
-    // these two attributes determine which route in your controller will be called.
-    url: "/foo",
-    type: 'POST',
-    // the 'data' attribute determines what data is sent to the server.
-    // The server will be able to access these values using the params hash.
-    // If the server only needs to know information passed in the URL, this attribute is not necessary.
-    data: { bar: 'baz' }
-  })
-
-  // the .done function takes a callback, which will only be fired if the server responds
-  // with a success status code. the callback will receive arguments corresponding to the
-  // request object, status, and data sent from the server.
-  ajaxRequest.done(someCallbackFunction)
-
-  // like the .done function, the .fail function will fire off a callback if the server responds
-  // with an error status code.
-  ajaxRequest.fail(someOtherCallbackFunction)
-```
-
-What does the server need to know to update a given vote total? What does the
-client need to know to update the DOM? How does the client get access to data
-sent from the server, and vice versa? You'll need to figure this all out to
-make this functional.
+1. Set expectations for the project.
+2. Decide on our MVP.
+3. Break the MVP down into user stories and deliverable features.
 
 
-### Release 1 : Points
+Once we've broken the application down into user stories/features, we should set up an electronic tracking application to track our progress in building out each of them.  [Trello][] and [Pivotal Tracker][] are examples of electronic tracking applications.
 
-Sure, a successful vote causes the upvote arrow to change color — but the point
-score of the post hasn't been updated! Your task in this release is to
-asynchronously update a post's points value on the page whenever someone clicks
-the vote button
-
-In release 0, you were asked to send data from the server to the client that
-identified which vote button to update. You sent this data as an unformatted
-string. That is a viable solution when you have a single piece of information
-to transmit, but becomes untenable when you need to send more than one piece of
-information -- like a post ID and a vote total. For this release, you should
-send back a string formatted in JSON. Your code will look something like this:
-
-```ruby
-  post '/posts/:id/vote' do
-    ##logic for adding a vote to a post.
-
-    content_type :json
-    { foo: 'bar', baz: 'qux' }.to_json
-  end
-```
-
-The `.done()` callback will now have access to the data passed from the server,
-which can be accessed as a JavaScript hashmap.
-
-### Release 2 : Deleting
-
-Now that you've got voting up and running, you should make the "delete this
-post" link functional. Clicking the link should delete the associated post from
-the database and consequently remote the post from the DOM.
-
-We've already created a skeleton route for you to use. You'll need to write the
-body of that route, an event listener, and callback functions to make this
-work.
-
-### Release 3 : Creating
-
-With deletion done, you're on to your hardest challenge yet — getting the
-creation form at the bottom of the page to work. Your first challenge will be
-to send the the right data to the server. Look into using jQuery's .serialize()
-function -- its a useful way to get data out of forms.
-
-You've already had routes respond with an unformatted string and with a string
-formatted as JSON. For this release, you should have your server return a
-string formatted in HTML, a.k.a. a partial. You can then append the partial
-directly to the page.
-
-### Release 4 : Are you sure everything works?
-
-Great, you've created a new post! Does its vote button work? its delete link?
-Probably not. Get them working.
-
-There are many ways to solve this problem. [jQuery's implementation of event
-delegation](https://learn.jquery.com/events/event-delegation/) may prove to be
-useful.
-
-### Release 5 : Validations
-
-Users can currently create posts with blank titles. You should prevent that
-from happening using ActiveRecord validations. If a post fails to create,
-the server must let the client know, and the client should let the user know by
-updating the DOM.
-
-Servers provide an easy way for surfacing errors -- HTTP status codes. Codes in
-the 200's correspond to successful requests, while  codes in the 400's and
-500's correspond to errors. The `$.ajax()` function will decide which callback to
-fire based on the error code returned by the server. You can set error codes
-like this in Sinatra:
-
-```ruby
-  post '/posts' do
-    #logic for attempting to save a post.
-    if @post.save
-      status 200
-      erb :_post, :layout => false
-    else
-      status 422
-    end
-  end
-```
+*Optionally*,  we can integrate a chat application into our workflow (e.g., [Slack][] or [HipChat][]).  Many teams find it helpful to create a chat environment—especially those that work remotely.  Combine a chat environment with hygienic git behavior, GitHub, and continuous integration and developers can work as well separated by miles as while standing in the same room together.
 
 
+### Release 1:  The First Commit
+Our team needs to create a new repository inside of our cohort's GitHub organization.  Before we do anything else, our first commit should be a `README.md` containing:
 
+ * The name of our team.
+ * The names of the team members.
+ * The user stories that define our MVP.
+
+
+### Release 2:  Build the StackOverflow Clone
+Unlike most other challenges, developing this application is not broken down into smaller releases.  Fortunately, we have already done the work of breaking the application down into user stories and features.  Now, we need to implement them.
+
+The following subsections will provide some additional guidance for us.
+
+***Git Workflow***
+We should follow a good git workflow.  We should always work on branches and commit often.  Team members should not merge their own pull requests.  Each pull request should be reviewed by at least one other member of the team before being merged.
+
+- [Git Workflow for Teams](https://gist.github.com/mikelikesbikes/ccbf4c7fd90e647138c6)
+- [Git: Rebase vs Merge](https://www.atlassian.com/git/tutorials/merging-vs-rebasing/)
+- [Git Resources](http://git-scm.com/book/en/v2/Getting-Started-About-Version-Control)
+
+
+***Polymorphic Associations***
+Where do we store data for votes?  Questions, answers, and comments can all be voted on.  So, we could have three separate vote-related models and tables.  For example, a `QuestionVote` model with a `question_votes` table.  This would result in three very similar tables all holding data on votes.
+
+Or, we could write polymorphic associations, in which case we would consider our question, answer, and comment models each as a *votable*, something on which votes are cast.  This would allow us to have just one `Vote` model with one `votes` table.  To make this work, the `votes` table would need to contain a column that indicates for what type of model the vote was made.  Was it for a question, answer, or comment?  Consult the [RailsGuides][polymorphic associations] and the [Rich on Rails][rorpa] blog for further details.
+
+Likewise, a comment can be made on either an answer or a question.  This offers another opportunity to use polymorphic associations.
+
+The decision to make use of polymorphic associations is up to our group.  We are not required to dive into this new concept right now.  It is 100% possible to simply have `answer_votes`, `question_votes`, and `comment_votes` tables to store the different types of votes and `answer_comments` and `question_comments` tables to store the different types of comments.
+
+
+***AJAX***
+We need to practice our new AJAX skills, and our application should have multiple AJAX calls to enhance the user experience.  Our team should decide which specific pieces of functionality we want to AJAX.
+
+A good place to start is AJAXing the voting functionality.  Instead of refreshing the page when a user upvotes or downvotes, we just want to make an AJAX call to our server to send that info and update the vote count on our page.
+
+
+### Release 3:  Demos
+We will be demonstrating our MVP to the rest of our cohort.  We'll be expected to run through the essential features of our application.
+
+
+## Conclusion
+This multi-day challenge is a good taste of how final projects operate.  In addition to reflecting on how we performed with regard to the technical aspects of the challenge, how was it to work on a group project of this scale?  What went well?  Where are there opportunities to grow?
+
+
+[cls]: http://en.wikipedia.org/wiki/Command-line_interface
+[HipChat]: https://www.hipchat.com/
+[mock schema design]: readme-assets/three-vote-tables.png
+[Pivotal Tracker]: http://www.pivotaltracker.com/
+[Polymorphic associations]: http://guides.rubyonrails.org/association_basics.html#polymorphic-associations
+[rorpa]: http://richonrails.com/articles/polymorphic-associations-in-rails
+[Slack]: https://slack.com/
+[Trello]: https://trello.com/
