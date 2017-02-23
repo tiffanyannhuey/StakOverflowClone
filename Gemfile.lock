@@ -109,8 +109,5 @@ DEPENDENCIES
   thin
 
 BUNDLED WITH
-<<<<<<< HEAD
-   1.13.6
-=======
    1.14.4
->>>>>>> solo-DavidMcLaughlin
+
