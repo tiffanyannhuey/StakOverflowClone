@@ -5,4 +5,6 @@ class Question < ActiveRecord::Base
   has_many :answers
   scope :most_recent, -> {all.order(:created_at).limit(5)}
 
+  validates :title, :description, :author_id, presence: true
+
 end
