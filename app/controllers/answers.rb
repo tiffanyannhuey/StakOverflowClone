@@ -10,7 +10,7 @@ post '/questions/:id/answers/new' do
     answer.save
     redirect "/questions/#{question.id}"
   else
-    @answer_error = "There was an issue submitting your answer. Try again."
+    @answer_error = "There was an issue submitting your answer. Please log in and try again."
     erb :"/questions/show"
   end
 end

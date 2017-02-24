@@ -8,17 +8,20 @@ users = []
 5.times {users << User.create!(
 						username: Faker::Internet.user_name(Faker::HarryPotter.character),
 						email: Faker::Internet.free_email,
-						password: "password")}
+						password: "password",
+						profile_url: "https://robohash.org/#{rand(5)}?set=set3")}
 
 5.times {users << User.create!(
 						username: Faker::Internet.user_name(Faker::LordOfTheRings.character),
 						email: Faker::Internet.free_email,
-						password: "password")}
+						password: "password",
+						profile_url: "https://robohash.org/#{rand(5)}")}
 
 5.times {users << User.create!(
 						username: Faker::Internet.user_name(Faker::StarWars.character),
 						email: Faker::Internet.free_email,
-						password: "password")}
+						password: "password",
+						profile_url: "https://robohash.org/#{rand(5)}?set=set2")}
 
 
 questions = []
