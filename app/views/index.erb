@@ -3,17 +3,20 @@
 <h1>DBC Overflow</h1>
 <% Question.all.each do |question| %>
   <div class="question">
-  <span>
-    <span class="votes">Votes: <%= question.vote_total %></span>
-    <span class="answer-count">Answers: <%= question.answers.count %></span>
-  </span>
-  <div>
-    <span class="author">Author: <a href=<%= "/users/#{question.author.id}" %>><%= question.author.username %></a></span>
-    <a href=<%= "/questions/#{question.id}" %>><%= question.title %></a>
-    <div>
-      <%= question.sneak_peak %>
+    <div class="answer-vote">
+      <div class="vote-count">Votes: <%= question.vote_total %></div>
+      <div class="answer-count">Answers: <%= question.answers.count %></div>
+      <div class="comment-count">Comments: <%= question.comments.count %></div>
     </div>
-  </div>
+    <div class="author-title">
+      <span class="author">Author: <a href=<%= "/users/#{question.author.id}" %>><%= question.author.username %></a></span>
+      <div>
+        <a href=<%= "/questions/#{question.id}" %>><%= question.title %></a>
+        <div class="sneak-peak">
+          <%= question.sneak_peak %>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>
 
