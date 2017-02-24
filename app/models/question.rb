@@ -12,4 +12,8 @@ class Question < ActiveRecord::Base
     votes.each{ |vote| sum += vote.value }
     sum
   end
+
+  def sneak_peak
+    description.split(" ")[0..15].join(" ") + "..."
+  end
 end
