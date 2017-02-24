@@ -19,7 +19,7 @@
       <div class="author">Author: <a href=<%= "/users/#{best_answer.author.id}" %>><%= best_answer.author.username %></a></div>
       </div>
       <h4 class="comments-header">Comments: <%= best_answer.comments.count %></h4>
-      <%= erb :'comments/new', :locals => { :answer => best_answer } %>
+      <%= erb :'comments/answers', :locals => { :answer => best_answer } %>
       <% best_answer.comments.each do |comment| %>
         <ul class="comments">
           <li>
@@ -58,7 +58,7 @@
         <div class="description"><%= answer.description %></div>
 
           <h4 class="comments-header">Comments: <%= answer.comments.count %></h4>
-          <%= erb :'comments/new', :locals => { :answer => answer } %>
+          <%= erb :'comments/answers', :locals => { :answer => answer } %>
 
           <% answer.comments.each do |comment| %>
           <ul class="comments">
