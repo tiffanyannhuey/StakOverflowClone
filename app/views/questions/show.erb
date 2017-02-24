@@ -6,11 +6,12 @@
   </div>
   <div class="best-answer answers">
     <% if best_answer %>
+      <% best_answer.inspect %>
       <h3>Best Answer</h3>
       <span>Description: <%= best_answer.description %></span>
       <span>Votes: <%= best_answer.vote_total %></span>
       <span>User: <%= best_answer.author.username %></span>
-      <%= erb :'comments/new' %>
+      <%= erb :'comments/new', :locals => { :answer => best_answer } %>
     <% end %>
   </div>
 
@@ -19,6 +20,7 @@
     <h3>Answers</h3>
     <ul>
     <% current_question.answers.each do |answer| %>
+   
     <% next if answer == best_answer %>
       <li class="answer">
         
@@ -26,15 +28,18 @@
         <span>Votes: <%= answer.vote_total %></span>
         <span>Author: <%= answer.author.username %></span>
           <h4>Comments: <%= answer.comments.count %></h4>
-           <%= erb :'comments/new' %>
+          <%= answer.id %>
+        <!--  <form id='comment' method='post' action='/questions/<%= @current_question.id %>/answers/<%= answer.id %>/comments'>
+        <input name='comment' type='textarea' placeholder="Enter Comment here">
+        <input type='submit' value='Submit Comment'>
+        </form> -->
+          <%= erb :'comments/new', :locals => { :answer => answer } %>
           <% answer.comments.each do |comment| %>
-      <!-- </li> -->
           <ul class="comments">
             <li>
               <span>Votes: <%= comment.vote_total %></span>
               <span><%= comment.description %></span>
               <span>Author: <%= comment.author.username %></span>
-             
             </li>
           <% end %>
           </ul>

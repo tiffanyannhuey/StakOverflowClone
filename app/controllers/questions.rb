@@ -10,6 +10,7 @@ post '/questions' do
   # params[:question][:author_id] = 1
   @question = Question.new(params[:question])
   if @question.save
+    # current_question
     redirect "/questions/#{@question.id}"
   else
     @errors = @question.errors.full_messages.join(" ")
@@ -19,9 +20,6 @@ end
 
 # Show
 get '/questions/:id' do
-  # question = Question.find_by(id: params[:id])
-  # puts current_question
-  # puts current_question.answers
   erb :'questions/show'
 end
 

@@ -1,20 +1,22 @@
-get '/questions/:id/comments/new' do
-	current_question
-	erb :'comments/new'
-end
 
-post '/questions/:id/comments' do
+
+post '/questions/:id/answers/:answer_id/comments' do
 	
-	comment = Comment.create(description: params[:comment],
-												commentable: current_question,
+	comment = Comment.new(description: params[:comment],
+												commentable: Answer.find_by(id: params[:answer_id]),
 												author_id: session[:id]
 												)
-	
-	if comment.valid?
+	puts comment.inspect
+	if comment.save
 		puts comment.inspect
 		redirect "/questions/#{current_question.id}"
 	else
 		@errors = comment.errors.full_messages
 		erb :'questions/show'
 	end
+end
+
+get '/questions/:id/comments/new' do
+	current_question
+	erb :'comments/new'
 end
