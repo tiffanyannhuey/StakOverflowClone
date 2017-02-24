@@ -1,0 +1,9 @@
+<div class="content">
+	<%= @current_question.title %>
+	<form id='comment' method='post' action='/questions/<%= @current_question.id %>'>
+		<label for='comment'>Add comment to <% @current_question.title %></label>
+		<input name='comment' type='textarea' placeholder="Enter text here">
+		<input type='submit'>Add Comment</input>
+	</form>
+
+</div>

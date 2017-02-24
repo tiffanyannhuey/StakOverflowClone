@@ -24,3 +24,4 @@ get '/questions/:id' do
   puts current_question.answers
   erb :'questions/show'
 end
+
