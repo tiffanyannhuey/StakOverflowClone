@@ -7,38 +7,37 @@
   <div class="best-answer answers">
     <% if best_answer %>
       <h3>Best Answer</h3>
-      <span>
-      votes <%= best_answer.vote_total %>
-      </span>
-      <span><%= best_answer.description %></span>
+      <span>Votes: <%= best_answer.vote_total %></span>
+      <span>Description: <%= best_answer.description %></span>
       <span>User: <%= best_answer.author.username %></span>
     <% end %>
   </div>
+
+
   <div class="answers">
     <h3>Answers</h3>
+    <% if currently_logged_in? %>
+      <% erb:('/answer/new') %>
+    <% end %>
     <ul>
     <% current_question.answers.each do |answer| %>
-    <% next if answer == best_answer %>
+     <% next if answer == best_answer %>
       <li class="answer">
-        <span>
-          votes <%= answer.vote_total %>
-        </span>
-        <span><%= answer.description %></span>
-        <span><%= answer.author.username %></span>
-        <ul class="comments">
-          <h4>Comments <%= answer.comments.count %></h4>
-
+        <span>Votes: <%= answer.vote_total %></span>
+        <span>Description: <%= answer.description %></span>
+        <span>Author: <%= answer.author.username %></span>
+          <h4>Comments: <%= answer.comments.count %></h4>
           <% answer.comments.each do |comment| %>
-          <li>
-            <span>votes <%= comment.vote_total %></span>
-            <span><%= comment.description %></span>
-            <span><%= comment.author.username %></span>
+          <ul class="comments">
+            <li>
+              <span>Votes: <%= comment.vote_total %></span>
+              <span><%= comment.description %></span>
+              <span>Author: <%= comment.author.username %></span>
+            </li>
           <% end %>
-          </li>
-        </ul>
+          </ul>
       </li>
     </ul>
-
     <% end %>
   </div>
 
