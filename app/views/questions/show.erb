@@ -5,8 +5,9 @@
     <%= current_question.description %>
     <span class="author">Author: <a href=<%= "/users/#{current_question.author.id}" %>><%= current_question.author.username %></a></span>
   </div>
-  <div class="best-answer answer">
+  <div class="answer">
     <% if best_answer %>
+    <div class="best-answer">
       <h3>Best Answer</h3>
       <span class="votes">
         <div class="arrow-up"></div>
@@ -15,6 +16,7 @@
       </span>
       <span class="description"><%= best_answer.description %></span>
       <div class="author">Author: <a href=<%= "/users/#{best_answer.author.id}" %>><%= best_answer.author.username %></a></div>
+      </div>
       <h4 class="comments-header">Comments: <%= best_answer.comments.count %></h4>
       <% best_answer.comments.each do |comment| %>
         <ul class="comments">
