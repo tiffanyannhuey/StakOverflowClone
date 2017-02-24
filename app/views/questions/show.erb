@@ -16,8 +16,14 @@
 
   <div class="answers">
     <h3>Answers</h3>
-    <% if currently_logged_in? %>
-      <% erb:('/answer/new') %>
+    <%# if currently_logged_in? %>
+      <%# erb:'/answers/new' %>
+    <%# end %>
+    <button type="button">
+      <a href="/questions/<%= current_question.id %>/answers/new">Post An Answer</a>
+    </button>
+    <% if @login_error %>
+      <%= @login_error %>
     <% end %>
     <ul>
     <% current_question.answers.each do |answer| %>
