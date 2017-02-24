@@ -11,7 +11,7 @@
 
 .nav-list a {
   text-decoration: none;
-  color: green;
+  color: black;
 }
 
 .question .author {
@@ -97,6 +97,9 @@
   background-color: white;
 }
 
+.answer-content {
+  background-color: white;
+}
 
 .author {
   display: inline-block;
@@ -112,9 +115,14 @@
 
 }
 
+.description {
+  background-color: white;
+}
+
 .answer {
   padding: 10px;
   border-bottom: 1px solid black;
+
 }
 
 .answer-header {

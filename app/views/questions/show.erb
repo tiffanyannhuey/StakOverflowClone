@@ -28,13 +28,15 @@
     <% if best_answer %>
     <div class="best-answer">
       <h3>Best Answer</h3>
+      <div class="answer-content">
       <span class="votes">
         <div class="arrow-up"></div>
          <%= best_answer.vote_total %>
         <div class="arrow-down"></div>
       </span>
-      <div class="author">Author: <a href=<%= "/users/#{best_answer.author.id}" %>><%= best_answer.author.username %></a></div>
-      <span class="description"><%= best_answer.description %></span>
+        <div class="author">Author: <a href=<%= "/users/#{best_answer.author.id}" %>><%= best_answer.author.username %></a></div>
+        <span class="description"><%= best_answer.description %></span>
+        </div>
       </div>
       <h4 class="comments-header">Comments: <%= best_answer.comments.count %></h4>
       <% best_answer.comments.each do |comment| %>
@@ -66,15 +68,15 @@
       <% next if answer == best_answer %>
       <li class="answer">
         <h4 class="answer-header">Answer:</h4>
+        <div class="answer-content">
         <span class="votes">
           <div class="arrow-up"></div>
            <div class="vote-total"><%= answer.vote_total %></div>
           <div class="arrow-down"></div>
         </span>
-
-        <div class="description"><%= answer.description %></div>
-        <span class="author">Author: <a href=<%= "/users/#{answer.author.id}" %>><%= answer.author.username %></a></span>
-
+          <div class="description"><%= answer.description %></div>
+          <span class="author">Author: <a href=<%= "/users/#{answer.author.id}" %>><%= answer.author.username %></a></span>
+        </div>
           <h4 class="comments-header">Comments: <%= answer.comments.count %></h4>
           <%= erb :'comments/new', :locals => { :answer => answer } %>
 
