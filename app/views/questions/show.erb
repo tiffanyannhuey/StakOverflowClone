@@ -3,6 +3,7 @@
   <h1 class="hero"><%= current_question.title %></h1>
   <div class="question">
     <%= current_question.description %>
+    <%= erb :'comments/questions', :locals => { :question => current_question } %>
     <span class="author">Author: <a href=<%= "/users/#{current_question.author.id}" %>><%= current_question.author.username %></a></span>
   </div>
   <div class="answer">
@@ -18,6 +19,7 @@
       <div class="author">Author: <a href=<%= "/users/#{best_answer.author.id}" %>><%= best_answer.author.username %></a></div>
       </div>
       <h4 class="comments-header">Comments: <%= best_answer.comments.count %></h4>
+      <%= erb :'comments/new', :locals => { :answer => best_answer } %>
       <% best_answer.comments.each do |comment| %>
         <ul class="comments">
           <li>
@@ -32,7 +34,7 @@
             </div>
           </li>
         </ul>
-    <%= erb :'comments/new', :locals => { :answer => best_answer } %>
+    
     
   <% end %>
       
