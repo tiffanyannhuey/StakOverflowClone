@@ -8,23 +8,26 @@ users = []
 5.times {users << User.create!(
 						username: Faker::Internet.user_name(Faker::HarryPotter.character),
 						email: Faker::Internet.free_email,
-						password: "password")}
+						password: "password",
+						profile_url: "https://robohash.org/#{rand(5)}?set=set3")}
 
 5.times {users << User.create!(
 						username: Faker::Internet.user_name(Faker::LordOfTheRings.character),
 						email: Faker::Internet.free_email,
-						password: "password")}
+						password: "password",
+						profile_url: "https://robohash.org/#{rand(5)}")}
 
 5.times {users << User.create!(
 						username: Faker::Internet.user_name(Faker::StarWars.character),
 						email: Faker::Internet.free_email,
-						password: "password")}
+						password: "password",
+						profile_url: "https://robohash.org/#{rand(5)}?set=set2")}
 
 
 questions = []
 20.times {questions << Question.create!(
 						title: Faker::TwinPeaks.quote,
-						description: Faker::Hipster.sentences,
+						description: Faker::Hipster.sentences.join(" "),
 						author_id: users.sample.id)}
 
 answers = []
@@ -39,24 +42,24 @@ questions.each do |question|
 end
 
 comments = []
-15.times {comments << Comment.create!(
+50.times {comments << Comment.create!(
 						commentable: questions.sample,
 						description: Faker::ChuckNorris.fact,
 						author_id: rand(1..15))}
-15.times {comments << Comment.create!(
+50.times {comments << Comment.create!(
 						commentable: answers.sample,
 						description: Faker::ChuckNorris.fact,
 						author_id: rand(1..15))}
 
-30.times {Vote.create!(
+120.times {Vote.create!(
 						votable: questions.sample,
 						user_id: rand(1..15),
-						value: [1, -1].sample)}
-30.times {Vote.create!(
+						value: [1, 1, 1, -1].sample)}
+120.times {Vote.create!(
 						votable: answers.sample,
 						user_id: rand(1..15),
-						value: [1, -1].sample)}
-30.times {Vote.create!(
+						value: [1, 1, 1, -1].sample)}
+120.times {Vote.create!(
 						votable: comments.sample,
 						user_id: rand(1..15),
-						value: [1, -1].sample)}
+						value: [1, 1, 1, -1].sample)}
