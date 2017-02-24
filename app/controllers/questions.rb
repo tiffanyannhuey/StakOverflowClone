@@ -19,9 +19,9 @@ end
 
 # Show
 get '/questions/:id' do
-
-  puts current_question
-  puts current_question.answers
+  # question = Question.find_by(id: params[:id])
+  # puts current_question
+  # puts current_question.answers
   erb :'questions/show'
 end
 

@@ -25,7 +25,7 @@ questions = []
 20.times {questions << Question.create!(
 						title: Faker::TwinPeaks.quote, 
 						description: Faker::Hipster.paragraph, 
-						author_id: users.sample.id)}
+						author_id: rand(1..15))}
 
 answers = []
 50.times { answers << Answer.create!(
