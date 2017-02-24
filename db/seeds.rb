@@ -27,7 +27,7 @@ users = []
 questions = []
 20.times {questions << Question.create!(
 						title: Faker::TwinPeaks.quote,
-						description: Faker::Hipster.sentences.join(" "),
+						description: Faker::Hipster.paragraph,
 						author_id: users.sample.id)}
 
 answers = []
