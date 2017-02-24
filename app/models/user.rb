@@ -1,3 +1,5 @@
+require 'bcrypt'
+
 class User < ActiveRecord::Base
   has_many :comments, foreign_key: :author_id
   has_many :questions, foreign_key: :author_id
@@ -16,6 +18,6 @@ class User < ActiveRecord::Base
   end
 
   def authenticate(given_password)
-    @password == given_password
+    self.password == given_password
   end
 end
