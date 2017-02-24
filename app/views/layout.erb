@@ -19,6 +19,18 @@
   <title></title>
 </head>
 <body>
+  <nav>
+  <ul class="nav-ulist">
+    <li class="nav-list"><a href="/">home</a></li>
+    <% if current_user %>
+      <li class="nav-list">Welcome <a href=<%= "/users/#{current_user.id}" %>><%= current_user.username %></a></li>
+      <li class="nav-list"><a href="/logout">logout</a></li>
+    <% else %>
+      <li class="nav-list"><a href="/users/new">sign up</a></li>
+      <li class="nav-list"><a href="/login">login</a></li>
+    <% end %>
+  </ul>
+  </nav>
   <%= yield %>
 </body>
 </html>

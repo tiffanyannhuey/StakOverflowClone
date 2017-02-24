@@ -38,11 +38,12 @@
 
 
   <div class="answers">
-    <h3>Answers</h3>
+    <h2>Answers</h2>
     <ul>
     <% current_question.answers.each do |answer| %>
       <% next if answer == best_answer %>
       <li class="answer">
+        <h4 class="answer-header">Answer:</h4>
         <span class="votes">
           <div class="arrow-up"></div>
            <%= answer.vote_total %>
