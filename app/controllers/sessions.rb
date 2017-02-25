@@ -2,8 +2,12 @@ get '/inspect' do
   session.inspect
 end 
 
-get '/login' do 
-  erb :'login'
+get '/login' do
+  if request.xhr? 
+    erb :'login', layout: false
+  else
+    erb :'login'
+  end
 end 
 
  post '/login' do 
