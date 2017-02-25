@@ -75,6 +75,22 @@ a:hover{
   margin:auto;
 }
 
+.arrow-up-btn {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 7px 7px 7px;
+  border-color: transparent transparent #a1a1a1 transparent;
+  background-color: none;
+}
+.arrow-down-btn {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 7px 7px 0px 7px;
+  border-color: #a1a1a1 transparent transparent transparent;
+  background-color: none;
+}
 .arrow-down {
   display: block;
   width: 0;
@@ -181,7 +197,10 @@ a:hover{
 
 .comments {
   font-size: 13px;
+}
 
+.list-comment{
+  margin: 0;
 }
 
 .comment {
