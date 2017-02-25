@@ -2,8 +2,9 @@
 
   <h1 class="hero"><%= current_question.title %></h1>
   <div class="question">
-    <%= current_question.description %>
-    <span class="author">Author: <a href=<%= "/users/#{current_question.author.id}" %>><%= current_question.author.username %></a></span>
+    <div><%= current_question.description %></div>
+    <div class="author">Author: <a href=<%= "/users/#{current_question.author.id}" %>><%= current_question.author.username %></a></div>
+    <%= erb :'comments/questions', :locals => { :question => current_question } %>
   </div>
   <% current_question.comments.each do |comment| %>
     <ul class="comments">
@@ -38,6 +39,7 @@
         <span class="description"><%= best_answer.description %></span>
         </div>
       </div>
+      <%= erb :'comments/answers', :locals => { :answer => best_answer } %>
       <h4 class="comments-header">Comments: <%= best_answer.comments.count %></h4>
       <% best_answer.comments.each do |comment| %>
         <ul class="comments">
@@ -53,9 +55,8 @@
             </div>
           </li>
         </ul>
-    <%= erb :'comments/new', :locals => { :answer => best_answer } %>
+    <% end %>
 
-  <% end %>
 
     <% end %>
   </div>
@@ -77,8 +78,8 @@
           <div class="description"><%= answer.description %></div>
           <span class="author">Author: <a href=<%= "/users/#{answer.author.id}" %>><%= answer.author.username %></a></span>
         </div>
+          <%= erb :'comments/answers', :locals => { :answer => answer } %>
           <h4 class="comments-header">Comments: <%= answer.comments.count %></h4>
-          <%= erb :'comments/new', :locals => { :answer => answer } %>
 
           <% answer.comments.each do |comment| %>
           <ul class="comments">

@@ -1,6 +1,20 @@
 /** {border: 1px solid red;}*/
 *{overflow: auto;}
 
+.comment-text-input {
+  height: 20px;
+  width: 96%;
+  margin: 10px 0px;
+  display: block;
+
+}
+
+.comment-submit-input {
+  border-radius: 5px;
+  border: none;
+  padding: 4px;
+}
+
 .nav-list {
   float: right;
   font-weight: bold;
@@ -10,7 +24,7 @@
 }
 
 .nav-list a {
-  text-decoration: none;
+  text-decoration: ;
   color: black;
 }
 
@@ -31,8 +45,7 @@
 
 .vote-total {
   margin: 2px auto;
-  /*text-align: center;*/
-  /*border: 1px solid black;*/
+
 }
 
 .arrow-up {
@@ -93,7 +106,7 @@
 .question {
   border: 1px solid black;
   padding: 25px;
-  margin: 20px;
+  margin: 10px;
   background-color: white;
 }
 
@@ -154,7 +167,6 @@
 
 .comment {
   background-color: white;
-  /*height: 6em;*/
   border-bottom: 2px solid gray;
 }
 
