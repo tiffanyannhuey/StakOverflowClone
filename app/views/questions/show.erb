@@ -52,7 +52,7 @@
       <% next if answer == best_answer %>
       <li class="answer">
         <h4 class="answer-header">Answer:</h4>
-        <% if current_question.author_id == current_user.id %>
+        <% if current_user && current_question.author_id == current_user.id %>
           <form action=<%= "/questions/#{current_question.id}/answers/#{answer.id}/mark-best" %> method="post">
             <button class="mark-best" type="submit">Mark Best Answer</button>
           </form>
