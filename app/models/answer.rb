@@ -10,5 +10,9 @@ class Answer < ActiveRecord::Base
   def vote_total
     votes.reduce(0) {|sum, vote| sum + vote.value}
   end
-  
+
+  def self.most_votes
+    Answer.all.sort{|a1, a2| a2.vote_total <=> a1.vote_total }
+  end
+
 end
