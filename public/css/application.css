@@ -349,4 +349,8 @@ form#posts input[type='submit'] {
   display:block;
 }
 
+.errors {
+  color: red;
+}
+
 

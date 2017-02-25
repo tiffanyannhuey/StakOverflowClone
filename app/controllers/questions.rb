@@ -1,22 +1,23 @@
 
 # New
 get '/questions/new' do
+  redirect "/" if !current_user
   @question = Question.new()
   erb :'questions/new'
 end
 
 # Create
 post '/questions' do
-  redirect "/" if !current_user
-  params[:question][:author_id] = session[:user_id]
-  @question = Question.new(params[:question])
-  if @question.save
-    # current_question
-    redirect "/questions/#{@question.id}"
-  else
-    @errors = @question.errors.full_messages.join(" ")
-    erb :'questions/new'
-  end
+  # params[:question][:author_id] = 1
+  user = current_user
+  @question = Question.new(params[:question]) 
+  @question.author_id = user.id 
+      # current_question
+      redirect "/questions/#{@question.id}"
+    else
+      @errors = @question.errors.full_messages
+      erb :'questions/new'
+    end
 end
 
 # Show
