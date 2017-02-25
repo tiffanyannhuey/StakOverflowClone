@@ -5,7 +5,8 @@ class Answer < ActiveRecord::Base
   belongs_to :question
 
   scope :comments, -> {all.order(:created_at)}
-
+ 
+  
   def vote_total
     sum = 0
     votes.each{ |vote| sum += vote.value }

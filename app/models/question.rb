@@ -4,13 +4,13 @@ class Question < ActiveRecord::Base
   has_many :votes, as: :votable
   has_many :answers
   scope :most_recent, -> {all.order(:created_at).limit(5)}
+  # scope :most_votes, -> {all.each}
 
   validates :title, :description, :author_id, presence: true
+ 
 
   def vote_total
-    sum = 0
-    votes.each{ |vote| sum += vote.value }
-    sum
+    votes.reduce(0) {|sum, vote| sum + vote.value}
   end
 
   def sneak_peak
