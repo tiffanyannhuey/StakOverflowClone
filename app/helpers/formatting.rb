@@ -14,6 +14,8 @@ helpers do
 
   def user_downvote(votable)
   	@user_vote = Vote.find_by(votable_id: votable.id, votable_type: votable.class.to_s, user_id: current_user.id, value: -1)
+  	p @user_vote 
+  	@user_vote
   end
 
 end
