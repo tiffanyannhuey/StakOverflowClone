@@ -8,21 +8,15 @@ end
 # Create
 post '/questions' do
   # params[:question][:author_id] = 1
-   user = current_user
-  @question = Question.new(params[:question])
-  if currently_logged_in? 
-    @question.author_id = user.id #if logged in, add author_id to @question
-    if @question.save 
+  user = current_user
+  @question = Question.new(params[:question]) 
+  @question.author_id = user.id 
       # current_question
       redirect "/questions/#{@question.id}"
     else
       @errors = @question.errors.full_messages
       erb :'questions/new'
     end
-  else
-    @errors = ["You must be logged in to post a question."]
-    erb :'questions/new'
-  end
 end
 
 # Show
