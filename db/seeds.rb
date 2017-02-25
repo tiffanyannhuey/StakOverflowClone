@@ -51,15 +51,15 @@ comments = []
 						description: Faker::ChuckNorris.fact,
 						author_id: rand(1..15))}
 
-120.times {Vote.create!(
+120.times {Vote.create(
 						votable: questions.sample,
 						user_id: rand(1..15),
 						value: [1, 1, 1, -1].sample)}
-120.times {Vote.create!(
+120.times {Vote.create(
 						votable: answers.sample,
 						user_id: rand(1..15),
 						value: [1, 1, 1, -1].sample)}
-120.times {Vote.create!(
+120.times {Vote.create(
 						votable: comments.sample,
 						user_id: rand(1..15),
 						value: [1, 1, 1, -1].sample)}

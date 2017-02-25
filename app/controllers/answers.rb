@@ -15,3 +15,14 @@ post '/questions/:id/answers/new' do
   end
 end
 
+post "/questions/:question_id/answers/:answer_id/mark-best" do
+  question = Question.find_by(id: params[:question_id])
+  answer   = Answer.find_by(id: params[:answer_id])
+  if question && answer
+    question.update(best_answer: answer.id)
+    redirect "/questions/#{params[:question_id]}"
+  else
+    redirect "/"
+  end
+end
+

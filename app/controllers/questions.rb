@@ -1,6 +1,7 @@
 
 # New
 get '/questions/new' do
+  redirect "/" if !current_user
   @question = Question.new()
   erb :'questions/new'
 end
