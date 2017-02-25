@@ -1,12 +1,14 @@
 <div class="content">
 
 <h1>Ask a question</h1>
-<% if @errors %>
-<p><%= @errors %></p>
-<% end %>
+  <% if @errors %>
+    <% @errors.each do |error| %>
+      <p class="errors"><%= error %></p>
+    <% end %> 
+  <% end %>
 <form class="question-form" action="/questions" method="post" >
 <label class="label">Title:</label>
-<input type="text" name="question[title]" value=<%= @question.title %>>
+<input type="text" name="question[title]" value=<%= @question.title %> >
 <label class="label">Question:</label>
 <textarea class="form-textarea" cols="60" rows="20" name="question[description]"><%= @question.description %></textarea>
 <input type="submit" value="Ask!">
