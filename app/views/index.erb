@@ -2,8 +2,9 @@
 
 <h1>DBC Overflow</h1>
 <% if current_user %>
-  <button><a href="/questions/new">Ask a Question</a></button>
+  <a class="ask-link" href="/questions/new"><button class="ask-btn">Ask a Question</button></a>
 <% end %>
+
 <% Question.all.each do |question| %>
   <div class="question">
     <div class="answer-vote">
