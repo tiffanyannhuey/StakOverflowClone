@@ -3,7 +3,7 @@
   <input type="hidden" name="question_id" value=<%= current_question.id %>>
   <!-- <div class="arrow-up"></div> -->
   <% classes = "arrow-up-btn" %>
-  <% classes = "upvoted" if user_upvote(votable) %>
+  <% classes = "upvoted" if current_user && user_upvote(votable) %>
   <button type="submit" class=<%= classes %> class="check"></button>
   </form>
 
@@ -12,7 +12,7 @@
   <form action=<%= "/votable/#{votable.class}/#{votable.id}/votes/-1" %> method="post">
   <input type="hidden" name="question_id" value=<%= current_question.id %>>
   <% classes = "arrow-down-btn" %>
-  <% classes = "downvoted" if user_downvote(votable) %>
+  <% classes = "downvoted" if current_user && user_downvote(votable) %>
   <button type="submit" class=<%= classes %> ></button>
   <!-- <div class="arrow-down"></div> -->
 </form>

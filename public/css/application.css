@@ -85,6 +85,7 @@ a:hover{
   font-size: 15px;
 }
 
+
 .arrow-up {
   width: 0;
   height: 0;
@@ -95,6 +96,8 @@ a:hover{
   margin:auto;
 }
 
+button:focus {outline:0;}
+
 .upvoted{
   width: 0;
   height: 0;
@@ -102,6 +105,7 @@ a:hover{
   border-width: 0px 7px 7px 7px;
   border-color: transparent transparent orange transparent;
   background-color: transparent;
+  padding: 0px;
 }
 
 .downvoted {
@@ -111,6 +115,7 @@ a:hover{
   border-width: 7px 7px 0px 7px;
   border-color: blue transparent transparent transparent;
   background-color: transparent;
+  padding: 0px;
 }
 
 .arrow-up-btn {
@@ -120,6 +125,7 @@ a:hover{
   border-width: 0 7px 7px 7px;
   border-color: transparent transparent #a1a1a1 transparent;
   background-color: transparent;
+  padding: 0px;
 }
 .arrow-down-btn {
   width: 0;
@@ -128,6 +134,7 @@ a:hover{
   border-width: 7px 7px 0px 7px;
   border-color: #a1a1a1 transparent transparent transparent;
   background-color: transparent;
+  padding: 0px;
 }
 .arrow-down {
   display: block;
