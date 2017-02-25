@@ -12,6 +12,7 @@ post '/questions' do
   user = current_user
   @question = Question.new(params[:question]) 
   @question.author_id = user.id 
+    if @question.save
       # current_question
       redirect "/questions/#{@question.id}"
     else
