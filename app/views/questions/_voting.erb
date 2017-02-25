@@ -1,0 +1,13 @@
+
+<form action=<%= "/votable/#{votable.class}/#{votable.id}/votes/1" %> method="post">
+  <input type="hidden" name="question_id" value=<%= current_question.id %>>
+  <!-- <div class="arrow-up"></div> -->
+  <button type="submit" class="arrow-up-btn"></button>
+  </form>
+
+  <div class="vote-total"><%= votable.vote_total %></div>
+  <form action=<%= "/votable/#{votable.class}/#{votable.id}/votes/-1" %> method="post">
+  <input type="hidden" name="question_id" value=<%= current_question.id %>>
+  <button type="submit" class="arrow-down-btn"></button>
+  <!-- <div class="arrow-down"></div> -->
+</form>

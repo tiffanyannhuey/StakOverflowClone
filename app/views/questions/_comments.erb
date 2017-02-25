@@ -1,0 +1,11 @@
+<% commentable.comments.each do |comment| %>
+  <li>
+    <div class="comment">
+      <span class="votes">
+        <%= erb :'questions/_voting', :locals => { :votable => comment } %>
+      </span>
+      <div class="description"><%= comment.description %></div>
+      <span class="author">By <a href=<%= "/users/#{comment.author.id}" %>><%= comment.author.username %></a> on <%= comment.created_at %></span>
+    </div>
+  </li>
+<% end %>

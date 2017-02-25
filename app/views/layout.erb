@@ -25,11 +25,19 @@
     <% if current_user %>
       <li class="nav-list">Welcome <a href=<%= "/users/#{current_user.id}" %>><%= current_user.username %></a></li>
       <li class="nav-list"><a href="/logout">logout</a></li>
+      <li class="nav-list"><img class="profile-image thumbnail" height="25px" width="25px" src="<%= current_user.profile_url %>"></li>
     <% else %>
       <li class="nav-list"><a href="/users/new">sign up</a></li>
       <li class="nav-list"><a href="/login">login</a></li>
     <% end %>
   </ul>
+  </nav>
+
+  <nav>
+    <ul class="nav-ulist">
+      <li class="nav-list" ><a href="questions/new">Ask Question</a></li>  
+    </ul>
+    
   </nav>
 
   <%= yield %>
