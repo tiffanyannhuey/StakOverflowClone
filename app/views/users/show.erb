@@ -1,12 +1,63 @@
 <div class='content'>
+  <div class="user-header">
+  <img class="profile-image" height="200px" width="200px" src="<%= current_user.profile_url %>">
+  <h1 ><%= current_user.username %></h1>
+  </div>
 
-<img height="200px" width="200px" src="<%= current_user.profile_url %>">
 
+  <div class='user-answers header'>
+    <h3>Answers: (<%= current_user.answers.count %>) </h3>
+      <% if current_user.answers.any? %>
+      <% current_user.answers.each do |answer| %>
+        <ul class="answer">
+         <li><a href="/questions/<%= answer.question_id %>"><%= answer.description %></a></li>
+        </ul>
+      <% end %>
+    <% else %>
+      <ul>
+        <li><%= "You have not answered any questions." %></p></li>
+      </ul>
+    <% end %>
+  </div>
 
-<div>
-  <h2></h2>
-</div>
+  <div class='user-questions header'>
+    <h3>Questions: (<%= current_user.questions.count %>)</h3>
+    <% if current_user.questions.any? %>
+      <% current_user.questions.each do |question| %>
+        <ul class="question">
+        <li><a href="/questions/<%= question.id %>"><%= question.description %></a></li>
+        </ul>
+      <% end %>
+    <% else %>
+      <ul>
+        <li><%= "You have not asked any questions." %></p></li>
+      </ul>
+    <% end %>
+  </div>
 
+  <div class='user-comments header'>
+    <h3>Comments: (<%= current_user.comments.count %>)</h3>
+    <% if current_user.comments.any? %>
+      <% current_user.comments.each do |comment| %>
+        <ul class="comments">
+          <% if comment.commentable_type == "Question" %>
+            <li>
+              <a href="/questions/<%= comment.commentable.id %>"><%= comment.description %></a>
+            </li>
+          <% else %> <!-- This condition is based on the assumption that the other option is Answer -->
+            <li>
+              <a href="/questions/<%= comment.commentable.question_id %>"><%= comment.description %></a>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    <% else %>
+      <ul>
+        <li><%= "You have not made any comments." %></p></li>
+      </ul>
+    <% end %>
+
+  </div>
 
 
 </div>
