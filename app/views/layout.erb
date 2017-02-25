@@ -23,7 +23,7 @@
     <ul class="nav-ulist">
       <li class="nav-list" id='home'><a href="/">home</a></li>
       <% if current_user %>
-      <li class="nav-list" id='pofile'>Welcome <a href=<%= "/users/#{current_user.id}" %>><%=   current_user.username %></a></li>
+      <li class="nav-list" id='profile'>Welcome <a href=<%= "/users/#{current_user.id}" %>><%=   current_user.username %></a></li>
       <li class="nav-list" id='logout'><a href="/logout">logout</a></li>
       <li class="nav-list"><img class="profile-image thumbnail" height="25px" width="25px" src="<%=   current_user.profile_url %>"></li>
       <% else %>
