@@ -1,14 +1,14 @@
 <div class='content'>
   <div class="user-header">
-  <img class="profile-image" height="200px" width="200px" src="<%= current_user.profile_url %>">
-  <h1 ><%= current_user.username %></h1>
+  <img class="profile-image" height="200px" width="200px" src="<%= @user.profile_url %>">
+  <h1 ><%= @user.username %></h1>
   </div>
 
 
   <div class='user-answers header'>
-    <h3>Answers: (<%= current_user.answers.count %>) </h3>
-      <% if current_user.answers.any? %>
-      <% current_user.answers.each do |answer| %>
+    <h3>Answers: (<%= @user.answers.count %>) </h3>
+      <% if @user.answers.any? %>
+      <% @user.answers.each do |answer| %>
         <ul class="answer">
          <li><a href="/questions/<%= answer.question_id %>"><%= answer.description %></a></li>
         </ul>
@@ -21,9 +21,9 @@
   </div>
 
   <div class='user-questions header'>
-    <h3>Questions: (<%= current_user.questions.count %>)</h3>
-    <% if current_user.questions.any? %>
-      <% current_user.questions.each do |question| %>
+    <h3>Questions: (<%= @user.questions.count %>)</h3>
+    <% if @user.questions.any? %>
+      <% @user.questions.each do |question| %>
         <ul class="question">
         <li><a href="/questions/<%= question.id %>"><%= question.description %></a></li>
         </ul>
@@ -36,9 +36,9 @@
   </div>
 
   <div class='user-comments header'>
-    <h3>Comments: (<%= current_user.comments.count %>)</h3>
-    <% if current_user.comments.any? %>
-      <% current_user.comments.each do |comment| %>
+    <h3>Comments: (<%= @user.comments.count %>)</h3>
+    <% if @user.comments.any? %>
+      <% @user.comments.each do |comment| %>
         <ul class="comments">
           <% if comment.commentable_type == "Question" %>
             <li>
