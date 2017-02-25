@@ -22,11 +22,31 @@ a:hover{
   padding: 4px;
 }
 
+.ask-btn {
+  margin-left: 5px;
+  padding:10px;
+  border: .5px solid orange;
+  background-color: white;
+  border-radius: 30px;
+
+}
+
+.ask-btn:hover{
+  box-shadow: 0px 0px 10px orange;
+  border: .5px solid transparent;
+}
+
+.ask-link{
+  color: black;
+}
+
 .nav-list {
   float: right;
   font-weight: bold;
   font-family: helvetica;
-  margin-left: 10px;
+  margin: auto 5px;
+  height: 50px;
+  vertical-align: bottom;
 }
 
 .nav-list a {
@@ -65,6 +85,7 @@ a:hover{
   font-size: 15px;
 }
 
+
 .arrow-up {
   width: 0;
   height: 0;
@@ -75,13 +96,36 @@ a:hover{
   margin:auto;
 }
 
+button:focus {outline:0;}
+
+.upvoted{
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0px 7px 7px 7px;
+  border-color: transparent transparent orange transparent;
+  background-color: transparent;
+  padding: 0px;
+}
+
+.downvoted {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 7px 7px 0px 7px;
+  border-color: blue transparent transparent transparent;
+  background-color: transparent;
+  padding: 0px;
+}
+
 .arrow-up-btn {
   width: 0;
   height: 0;
   border-style: solid;
   border-width: 0 7px 7px 7px;
   border-color: transparent transparent #a1a1a1 transparent;
-  background-color: none;
+  background-color: transparent;
+  padding: 0px;
 }
 .arrow-down-btn {
   width: 0;
@@ -89,7 +133,8 @@ a:hover{
   border-style: solid;
   border-width: 7px 7px 0px 7px;
   border-color: #a1a1a1 transparent transparent transparent;
-  background-color: none;
+  background-color: transparent;
+  padding: 0px;
 }
 .arrow-down {
   display: block;
@@ -111,7 +156,6 @@ a:hover{
 .vote-count, .answer-count, .comment-count {
   background: white;
   border-radius: 3px;
-  /*border: 1px solid black;*/
   padding: 10px 5px;
   font-size: 10px;
   display: inline-block;
