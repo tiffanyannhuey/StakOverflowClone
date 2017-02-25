@@ -1,7 +1,8 @@
+
 post '/questions/:id/answers/:answer_id/comments' do
 	comment = Comment.new(description: params[:comment],
 												commentable: Answer.find_by(id: params[:answer_id]),
-												author_id: session[:id]
+												author_id: session[:user_id]
 												)
 	if comment.save
 		redirect "/questions/#{current_question.id}"
@@ -19,7 +20,7 @@ end
 post '/questions/:question_id/comments' do
 	comment = Comment.new(description: params[:comment],
 												commentable: Question.find_by(id: params[:question_id]),
-												author_id: session[:id]
+												author_id: session[:user_id]
 												)
 	if comment.save
 		redirect "/questions/#{comment.commentable.id}"

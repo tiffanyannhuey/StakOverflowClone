@@ -34,7 +34,7 @@ answers = []
 50.times { answers << Answer.create!(
 						description: Faker::Hacker.say_something_smart,
 						author_id: rand(1..15),
-						question_id: rand(1..50))}
+						question_id: rand(1..20))}
 
 questions.each do |question|
 	question.best_answer = rand(1..50)

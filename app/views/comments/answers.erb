@@ -1,4 +1,4 @@
 <form id='comment' method='post' action='/questions/<%= @current_question.id %>/answers/<%= answer.id %>/comments'>
-  <input name='comment' type='textarea' placeholder="Enter Comment here">
-  <input type='submit' value='Submit Comment'>
+  <textarea class="comment-text-input" name='comment' placeholder="Enter Comment Here"></textarea>
+  <input class="comment-submit-input" type='submit' value='Submit'>
 </form>

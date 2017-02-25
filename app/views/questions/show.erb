@@ -2,63 +2,84 @@
 
   <h1 class="hero"><%= current_question.title %></h1>
   <div class="question">
-    <%= current_question.description %>
+    <div><%= current_question.description %></div>
+    <div class="author">Author: <a href=<%= "/users/#{current_question.author.id}" %>><%= current_question.author.username %></a></div>
     <%= erb :'comments/questions', :locals => { :question => current_question } %>
-    <span class="author">Author: <a href=<%= "/users/#{current_question.author.id}" %>><%= current_question.author.username %></a></span>
   </div>
+  <% current_question.comments.each do |comment| %>
+    <ul class="comments">
+      <li>
+        <div class="comment">
+          <span class="votes">
+            <div class="arrow-up"></div>
+             <div class="vote-total"><%= comment.vote_total %></div>
+            <div class="arrow-down"></div>
+          </span>
+          <div class="description"><%= comment.description %></div>
+          <span class="author">By <a href=<%= "/users/#{comment.author.id}" %>><%= comment.author.username %></a> on <%= comment.created_at %></span>
+        </div>
+      </li>
+    </ul>
+  <% end %>
+  </div>
+
+
+
   <div class="answer">
     <% if best_answer %>
     <div class="best-answer">
       <h3>Best Answer</h3>
+      <div class="answer-content">
       <span class="votes">
         <div class="arrow-up"></div>
-         <%= best_answer.vote_total %>
+         <div class="vote-total"><%= best_answer.vote_total %></div>
         <div class="arrow-down"></div>
       </span>
-      <span class="description"><%= best_answer.description %></span>
-      <div class="author">Author: <a href=<%= "/users/#{best_answer.author.id}" %>><%= best_answer.author.username %></a></div>
+        <div class="author">Author: <a href=<%= "/users/#{best_answer.author.id}" %>><%= best_answer.author.username %></a></div>
+        <span class="description"><%= best_answer.description %></span>
+        </div>
       </div>
-      <h4 class="comments-header">Comments: <%= best_answer.comments.count %></h4>
       <%= erb :'comments/answers', :locals => { :answer => best_answer } %>
+      <h4 class="comments-header">Comments: <%= best_answer.comments.count %></h4>
       <% best_answer.comments.each do |comment| %>
         <ul class="comments">
           <li>
             <div class="comment">
               <span class="votes">
                 <div class="arrow-up"></div>
-                 <%= comment.vote_total %>
+                 <div class="vote-total"><%= comment.vote_total %></div>
                 <div class="arrow-down"></div>
               </span>
-              <span class="author">Author: <a href=<%= "/users/#{comment.author.id}" %>><%= comment.author.username %></a></span>
               <div class="description"><%= comment.description %></div>
+              <span class="author">By <a href=<%= "/users/#{comment.author.id}" %>><%= comment.author.username %></a> on <%= comment.created_at %></span>
             </div>
           </li>
         </ul>
-    
-    
-  <% end %>
-      
+    <% end %>
+
+
     <% end %>
   </div>
 
 
   <div class="answers">
-    <h3>Answers</h3>
+    <h2>Answers</h2>
     <ul>
     <% current_question.answers.each do |answer| %>
       <% next if answer == best_answer %>
       <li class="answer">
+        <h4 class="answer-header">Answer:</h4>
+        <div class="answer-content">
         <span class="votes">
           <div class="arrow-up"></div>
-           <%= answer.vote_total %>
+           <div class="vote-total"><%= answer.vote_total %></div>
           <div class="arrow-down"></div>
         </span>
-
-        <span class="author">Author: <a href=<%= "/users/#{answer.author.id}" %>><%= answer.author.username %></a></span>
-        <div class="description"><%= answer.description %></div>
-
-          <h4 class="comments-header">Comments: <%= answer.comments.count %></h4>
+          <div class="description"><%= answer.description %></div>
+          <span class="author">Author: <a href=<%= "/users/#{answer.author.id}" %>><%= answer.author.username %></a></span>
+        </div>
           <%= erb :'comments/answers', :locals => { :answer => answer } %>
+          <h4 class="comments-header">Comments: <%= answer.comments.count %></h4>
 
           <% answer.comments.each do |comment| %>
           <ul class="comments">
@@ -66,11 +87,11 @@
               <div class="comment">
                 <span class="votes">
                   <div class="arrow-up"></div>
-                   <%= comment.vote_total %>
+                   <div class="vote-total"><%= comment.vote_total %></div>
                   <div class="arrow-down"></div>
                 </span>
-                <span class="author">Author: <a href=<%= "/users/#{comment.author.id}" %>><%= comment.author.username %></a></span>
                 <div class="description"><%= comment.description %></div>
+                <span class="author">By <a href=<%= "/users/#{comment.author.id}" %>><%= comment.author.username %></a> on <%= comment.created_at %></span>
               </div>
             </li>
           </ul>

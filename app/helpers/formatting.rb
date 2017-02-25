@@ -7,5 +7,5 @@ helpers do
   def best_answer
     @best_answer ||= Answer.find_by(id: current_question.best_answer)
   end
-  
+
 end
