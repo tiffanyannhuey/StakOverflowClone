@@ -7,7 +7,8 @@ end
 
 # Create
 post '/questions' do
-  # params[:question][:author_id] = 1
+  redirect "/" if !current_user
+  params[:question][:author_id] = session[:user_id]
   @question = Question.new(params[:question])
   if @question.save
     # current_question
