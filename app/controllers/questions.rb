@@ -14,6 +14,7 @@ post '/questions' do
   @question.author_id = user.id 
     if @question.save
       # current_question
+    if @question.save
       redirect "/questions/#{@question.id}"
     else
       @errors = @question.errors.full_messages
