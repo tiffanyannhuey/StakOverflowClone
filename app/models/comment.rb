@@ -4,8 +4,6 @@ class Comment < ActiveRecord::Base
   has_many :votes, as: :votable
 
   def vote_total
-    sum = 0
-    votes.each{ |vote| sum += vote.value }
-    sum
+    votes.reduce(0) {|sum, vote| sum + vote.value}
   end
 end
