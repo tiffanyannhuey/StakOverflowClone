@@ -17,6 +17,5 @@ end
 
 
 get '/users/:id' do
-
-erb :'/users/show'
+  erb :'/users/show'
 end
