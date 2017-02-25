@@ -19,18 +19,7 @@
       <h3>Best Answer</h3>
       <div class="answer-content">
       <span class="votes">
-        <form action=<%= "/voteable/#{best_answer.class}/#{best_answer.id}/votes/1" %> method="post">
-          <input type="hidden" name="question_id" value=<%= current_question.id %>>
-          <!-- <div class="arrow-up"></div> -->
-          <button type="submit" class="arrow-up-btn"></button>
-          </form>
-
-         <div class="vote-total"><%= best_answer.vote_total %></div>
-         <form action=<%= "/voteable/#{best_answer.class}/#{best_answer.id}/votes/0" %> method="post">
-         <input type="hidden" name="question_id" value=<%= current_question.id %>>
-         <button type="submit" class="arrow-down-btn"></button>
-        <!-- <div class="arrow-down"></div> -->
-        </form>
+        <%= erb :'questions/_voting', :locals => { :votable => best_answer } %>
       </span>
         <div class="author">Author: <a href=<%= "/users/#{best_answer.author.id}" %>><%= best_answer.author.username %></a></div>
         <span class="description"><%= best_answer.description %></span>
@@ -59,18 +48,7 @@
         <% end %>
         <div class="answer-content">
         <span class="votes">
-          <form action=<%= "/voteable/#{answer.class}/#{answer.id}/votes/1" %> method="post">
-          <!-- <div class="arrow-up"></div> -->
-          <input type="hidden" name="question_id" value=<%= current_question.id %>>
-          <button type="submit" class="arrow-up-btn"></button>
-          </form>
-
-         <div class="vote-total"><%= answer.vote_total %></div>
-         <form action=<%= "/voteable/#{answer.class}/#{answer.id}/votes/0" %> method="post">
-         <input type="hidden" name="question_id" value=<%= current_question.id %>>
-         <button type="submit" class="arrow-down-btn"></button>
-        <!-- <div class="arrow-down"></div> -->
-        </form>
+          <%= erb :'questions/_voting', :locals => { :votable => answer } %>
         </span>
           <div class="description"><%= answer.description %></div>
           <span class="author">Author: <a href=<%= "/users/#{answer.author.id}" %>><%= answer.author.username %></a></span>

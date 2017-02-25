@@ -8,8 +8,6 @@ end
 
  post '/login' do 
   user = User.find_by(email: params[:user][:email])
-  puts user
-  puts params[:user][:password]
   if user && user.authenticate(params[:user][:password])
     session[:user_id] = user.id
     redirect "/users/#{user.id}"
