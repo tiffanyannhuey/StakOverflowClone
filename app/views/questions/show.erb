@@ -2,6 +2,9 @@
 
   <h1 class="hero"><%= current_question.title %></h1>
   <div class="question">
+    <span class="votes">
+      <%= erb :'questions/_voting', :locals => { :votable => current_question } %>
+    </span>
     <div><%= current_question.description %></div>
     <div class="author">Author: <a href=<%= "/users/#{current_question.author.id}" %>><%= current_question.author.username %></a></div>
     <%= erb :'comments/questions', :locals => { :question => current_question } %>
