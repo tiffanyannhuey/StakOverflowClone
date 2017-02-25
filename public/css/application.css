@@ -1,6 +1,13 @@
 /** {border: 1px solid red;}*/
 *{overflow: auto;}
 
+a:visited{
+  color: black;
+}
+
+a:hover{
+  color: orange;
+}
 .comment-text-input {
   height: 20px;
   width: 96%;
@@ -20,7 +27,6 @@
   font-weight: bold;
   font-family: helvetica;
   margin-left: 10px;
-
 }
 
 .nav-list a {
@@ -28,14 +34,25 @@
   color: black;
 }
 
-.question .author {
+.nav-list a:hover {
+  color: orange;
+}
 
+.question .author {
+  margin-top: 7px;
   color: black;
   line-height: 2.4em;
 }
 
 .question a {
   text-decoration: none;
+
+}
+
+.question a:hover {
+  text-decoration: none;
+  color: orange;
+
 }
 
 .sneak-peak {
@@ -45,16 +62,16 @@
 
 .vote-total {
   margin: 2px auto;
-
+  font-size: 15px;
 }
 
 .arrow-up {
   width: 0;
   height: 0;
   display: block;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-bottom: 5px solid gray;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid gray;
   margin:auto;
 }
 
@@ -62,9 +79,9 @@
   display: block;
   width: 0;
   height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid gray;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid gray;
   margin: auto;
 }
 
@@ -117,6 +134,7 @@
 .author {
   display: inline-block;
   font-size: 11px;
+  margin-top: 7px;
 }
 
 .answers {
@@ -130,6 +148,7 @@
 
 .description {
   background-color: white;
+  margin-top: 5px;
 }
 
 .answer {
@@ -168,6 +187,7 @@
 .comment {
   background-color: white;
   border-bottom: 2px solid gray;
+  margin: 0px;
 }
 
 
