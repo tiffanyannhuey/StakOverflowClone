@@ -116,17 +116,17 @@ $(document).ready(function() {
 
 	//=================================================================================
 	//Ajax for leaving a comment
-
-	$(".comments-header").before("<button class='comment-form-link'>Leave a comment</button>");
 	$(".comment-form").hide();
+	$(".comments-header").before("<button class='comment-form-link'>Leave a comment</button>");
 
 	$('body').on('click', '.comment-form-link', function(event){
-		console.log("binded successfully");
-		console.log($(this));
-		console.log($(this).siblings());
 		event.preventDefault();
-		$(this).hide();
-		$(this).siblings("form.comment-form").slideDown();
+		if ($("#profile").length === 1){
+			$(this).hide();
+			$(this).siblings("form.comment-form").slideDown();
+		} else {
+			errorMessage(this, "You must be logged in to comment");
+		}
 	})
 
 	$('body').on('click', '.comment-submit-input', function(event){
@@ -156,7 +156,6 @@ $(document).ready(function() {
 		})
 
 	})
-
 
 
 

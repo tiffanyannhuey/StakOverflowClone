@@ -21,6 +21,10 @@ a:hover{
 
 }
 
+.comment-text-input:focus{
+  outline: .5px solid orange;
+} 
+
 .comment-submit-input {
   border-radius: 5px;
   border: none;
