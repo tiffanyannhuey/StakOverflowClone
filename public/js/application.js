@@ -94,14 +94,17 @@ $(document).ready(function() {
 			})
 		} else {
 			//Tell them they need to be logged in
-			errorMessage(this);
+			errorMessage(this, "You must be logged in to vote");
 		}
 	}
 
-	var errorMessage = function(object){
-		$(object).append("<div class='act-not-logged-in'>You need to be logged in to do that</div>");
-		var message = $(object).find('.act-not-logged-in');
-		message.css("top", ( $(object).offset().top - $(document).scrollTop() ) )
+	//================================================================================
+	// Reusable error alert popup
+
+	var errorMessage = function(object, error){
+		$(object).append("<div class='error-alert'>"+error+"</div>");
+		var message = $(object).find('.error-alert');
+		message.css("top", ( $(object).offset().top - $(document).scrollTop()) )
 		message.fadeOut(3000, function(){message.remove()});
 	};
 
@@ -113,7 +116,7 @@ $(document).ready(function() {
 
 	//=================================================================================
 	//Ajax for leaving a comment
-	
+
 	$(".comments-header").before("<button class='comment-form-link'>Leave a comment</button>");
 	$(".comment-form").hide();
 
@@ -124,6 +127,34 @@ $(document).ready(function() {
 		event.preventDefault();
 		$(this).hide();
 		$(this).siblings("form.comment-form").slideDown();
+	})
+
+	$('body').on('click', '.comment-submit-input', function(event){
+		event.preventDefault();
+		var form = $(this).closest('form');
+		var route = form.attr('action');
+		var formData = form.serialize();
+		console.log(route);
+		console.log(formData);
+
+		$.ajax({
+			url: route,
+			method: "post",
+			data: formData
+		})
+		.done(function(response){
+			console.log(response);
+			var newComment = $(response);
+			console.log(newComment);
+			console.log(form.siblings());
+			form.siblings(".comments").append(newComment);
+
+		})
+		.fail(function(response){
+			console.log("failed");
+			errorMessage(form, "Comment must not be blank")
+		})
+
 	})
 
 

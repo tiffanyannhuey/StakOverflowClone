@@ -31,6 +31,10 @@ a:hover{
   background-color: orange;
 } 
 
+.comment-submit-input:focus{
+  outline:none;
+}
+
 .ask-btn {
   margin-left: 5px;
   padding:10px;
@@ -350,10 +354,11 @@ span {
   margin: 0px;
 }
 
-.act-not-logged-in {
+.error-alert {
   position: fixed;
   left: 27%;
-  width: 50px;
+  width: 70px;
+  font-size: 13px;
   background-color: white;
   border: 1px solid orange;
   padding: 5px;
