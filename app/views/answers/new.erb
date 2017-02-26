@@ -4,7 +4,7 @@
     <p class="errors"><%= @answer_error %></p>
   <% end %>
 <form id="answer-form" action="/questions/<%= current_question.id%>/answers/new" method="post">
-  <textarea rows="15" cols="50" name="description" placeholder="Add your answer here"></textarea><br>
-  <input type="submit" value="Post Your Answer">
+  <textarea class="new-answer-textarea" rows="15" cols="50" name="description" placeholder="Add your answer here"></textarea><br>
+  <input class="new-answer-submit" type="submit" value="Post Your Answer">
 </form>
 </div>

@@ -219,7 +219,7 @@ button:focus {outline:0;}
   outline: .5px solid orange;
 }
 
-.new-question-textarea{
+.new-question-textarea, .new-answer-textarea{
   border: none;
   display: block;
   margin: auto;
@@ -227,7 +227,7 @@ button:focus {outline:0;}
   padding: 10px;
 }
 
-.new-question-textarea:focus{
+.new-question-textarea:focus, .new-answer-textarea:focus{
   outline: .5px solid orange;
 }
 
@@ -237,7 +237,7 @@ button:focus {outline:0;}
   text-align: center;
 }
 
-.new-question-submit{
+.new-question-submit, .new-answer-submit{
   border: none;
   border-radius: 3px;
   background-color: #e8af3e;
