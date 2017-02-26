@@ -105,6 +105,28 @@ $(document).ready(function() {
 		message.fadeOut(3000, function(){message.remove()});
 	};
 
+
+  $("#answer-form").on("submit", function(event){
+    event.preventDefault();
+    var answer = $(this).serialize()
+    var route = $(this).attr('action');
+    // var answ
+    $.ajax({
+      url: route, 
+      method: "POST",
+      data: answer
+    })
+
+    .done(function(response){
+      console.log(response)
+      // console.log(response);
+      $(".answers").append(response);
+      $("textarea[name=description]").val('');
+    })
+
+  })
+
+
 	// Dynamically bind to all possible classes the arrows can have
 	$('body').on('click', '.arrow-up-btn',   voting);
 	$('body').on('click', '.arrow-down-btn', voting);

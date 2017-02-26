@@ -1,0 +1,22 @@
+<% answer = @answer %>
+<li class="answer">
+  <h4 class="answer-header">Answer:</h4>
+  <% if current_user && current_question.author_id == current_user.id %>
+    <form action=<%= "/questions/#{current_question.id}/answers/#{answer.id}/mark-best" %> method="post">
+      <button class="mark-best" type="submit">Mark Best Answer</button>
+    </form>
+  <% end %>
+  <div class="answer-content">
+  <span class="votes">
+    <%= erb :'questions/_voting', :locals => { :votable => answer } %>
+  </span>
+    <div class="description"><%= answer.description %></div>
+    <span class="author">Author: <a href=<%= "/users/#{answer.author.id}" %>><%= answer.author.username %></a></span>
+  </div>
+    <%= erb :'comments/answers', :locals => { :answer => answer } %>
+    <h4 class="comments-header">Comments: <%= answer.comments.count %></h4>
+
+    <ul class="comments">
+    <%= erb :'questions/_comments', :locals => { :commentable => answer } %>
+    </ul>
+</li>
