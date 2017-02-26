@@ -67,7 +67,8 @@ $(document).ready(function() {
 			})
 	
 	})
-
+	//=============================================================================
+	//Ajax voting
 
 	var voting = function(event){
 		event.preventDefault();
@@ -91,17 +92,19 @@ $(document).ready(function() {
 				arrow.closest("form").siblings("form").find(".upvoted, .downvoted").css("border-bottom-color", "#a1a1a1").css("border-top-color", "#a1a1a1");
 				arrow.css("border-bottom-color", "").css("border-top-color", "").removeClass().addClass(response["class_name"]);
 			})
-
 		} else {
 			//Tell them they need to be logged in
-			errorMessage(this);
+			errorMessage(this, "You must be logged in to vote");
 		}
 	}
 
-	var errorMessage = function(object){
-		$(object).append("<div class='act-not-logged-in'>You need to be logged in to do that</div>");
-		var message = $(object).find('.act-not-logged-in');
-		message.css("top", ( $(object).offset().top - $(document).scrollTop() ) )
+	//================================================================================
+	// Reusable error alert popup
+
+	var errorMessage = function(object, error){
+		$(object).append("<div class='error-alert'>"+error+"</div>");
+		var message = $(object).find('.error-alert');
+		message.css("top", ( $(object).offset().top - $(document).scrollTop()) )
 		message.fadeOut(3000, function(){message.remove()});
 	};
 
@@ -110,5 +113,45 @@ $(document).ready(function() {
 	$('body').on('click', '.arrow-down-btn', voting);
 	$('body').on('click', '.upvoted',   	 voting);
 	$('body').on('click', '.downvoted',      voting);
+
+	//=================================================================================
+	//Ajax for leaving a comment
+	$(".comment-form").hide();
+	$(".comments-header").before("<button class='comment-form-link'>Leave a comment</button>");
+
+	$('body').on('click', '.comment-form-link', function(event){
+		event.preventDefault();
+		if ($("#profile").length === 1){
+			$(this).hide();
+			$(this).siblings("form.comment-form").slideDown();
+		} else {
+			errorMessage(this, "You must be logged in to comment");
+		}
+	})
+
+	$('body').on('click', '.comment-submit-input', function(event){
+		event.preventDefault();
+		var form = $(this).closest('form');
+		var route = form.attr('action');
+		var formData = form.serialize();
+
+		$.ajax({
+			url: route,
+			method: "post",
+			data: formData
+		})
+		.done(function(response){
+			var newComment = $(response);
+			form.siblings(".comments").append(newComment);
+			form.find(".comment-text-input").val("");
+		})
+		.fail(function(response){
+			console.log("failed");
+			errorMessage(form, "Comment must not be blank")
+		})
+
+	})
+
+
 
 });

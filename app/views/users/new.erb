@@ -1,5 +1,6 @@
 <div class="content">
-<h1>Enter your information to create an account:</h1>
+<div class="signup-container">
+<h1 class="signup-header">Enter your information to create an account:</h1>
 <ul>
   <% if @errors %>
     <% @errors.each do |error| %>
@@ -9,18 +10,15 @@
 </ul>
 
   <form id="new_user" action="/users/new" method="post">
-    <label for="user[username]">Username:</label>
-    <input type="text" name="user[username]"></input><br>
+    <input class="signup-username" type="text" name="user[username]" placeholder="Username"></input><br>
 
-    <label for="user[email]">Email:</label>
-    <input type="email" name="user[email]"></input><br>
+    <input class="signup-email" type="email" name="user[email]" placeholder="Email"></input><br>
 
-    <label for="user[password]">Password:</label>
-    <input type="password" name="user[password]"></input><br>
+    <input class="signup-password" type="password" name="user[password]" placeholder="Password"></input><br>
 
-    <input type="submit" value="Create Account">
+    <input class="signup-submit" type="submit" value="Create Account">
 
   </form>
 
-
+</div>
 </div>

@@ -1,6 +1,6 @@
 
 <form action=<%= "/votable/#{votable.class}/#{votable.id}/votes/1" %> method="post">
-  <input type="hidden" name="question_id" value=<%= current_question.id %>>
+  <input type="hidden" name="question_id" value=<%= current_question.id if current_question %>>
   <% classes = "arrow-up-btn" %>
   <% classes = "upvoted" if current_user && user_upvote(votable) %>
   <button type="submit" class=<%= classes %> class="check"></button>
@@ -9,7 +9,7 @@
   <div class="vote-total"><%= votable.vote_total %></div>
 
   <form action=<%= "/votable/#{votable.class}/#{votable.id}/votes/-1" %> method="post">
-  <input type="hidden" name="question_id" value=<%= current_question.id %>>
+  <input type="hidden" name="question_id" value=<%= current_question.id if current_question %>>
   <% classes = "arrow-down-btn" %>
   <% classes = "downvoted" if current_user && user_downvote(votable) %>
   <button type="submit" class=<%= classes %> ></button>
