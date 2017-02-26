@@ -1,6 +1,11 @@
 /** {border: 1px solid red;}*/
 *{overflow: auto;}
 
+.content{
+  margin: auto;
+  width: 90%;
+}
+
 a:visited{
   color: black;
 }
@@ -108,6 +113,8 @@ button:focus {outline:0;}
   padding: 0px;
 }
 
+
+
 .downvoted {
   width: 0;
   height: 0;
@@ -136,6 +143,7 @@ button:focus {outline:0;}
   background-color: transparent;
   padding: 0px;
 }
+
 .arrow-down {
   display: block;
   width: 0;
@@ -182,9 +190,68 @@ button:focus {outline:0;}
   margin-right: 5px;
 }
 
+.new-question-title{
+  display: block;
+  padding: 0px 5px;
+  width: 97%;
+  border: none;
+  margin: 15px auto;
+
+}
+
+.new-question-title:focus{
+  outline: .5px solid orange;
+}
+
+.new-question-textarea{
+  border: none;
+  display: block;
+  margin: auto;
+  width: 96%;
+  padding: 10px;
+}
+
+.new-question-textarea:focus{
+  outline: .5px solid orange;
+}
+
+#new-question-header{
+  display: block;
+  margin: auto;
+  text-align: center;
+}
+
+.new-question-submit{
+  border: none;
+  border-radius: 3px;
+  background-color: #e8af3e;
+  color: black;
+  margin: 20px auto;
+  display: block;
+  width: 99%;
+  height: 45px;
+}
+
+.new-question-submit:focus{
+  outline:none;
+}
+
+.new-question-submit:hover{
+  background-color: orange;
+}
+
+.read-more{
+  color: orange;
+}
+
+.read-more:visited{
+  color: orange;
+}
+
 .hero{
   margin: auto;
   text-align: center;
+
 }
 
 .question {
@@ -229,6 +296,10 @@ button:focus {outline:0;}
   margin:7px;
 }
 
+span {
+  position: relative;
+}
+
 .best-answer {
   padding: 20px;
   border: 0.5px solid #4b5159;
@@ -258,6 +329,16 @@ button:focus {outline:0;}
   background-color: white;
   border-bottom: 2px solid gray;
   margin: 0px;
+}
+
+.act-not-logged-in {
+  position: fixed;
+  left: 27%;
+  width: 50px;
+  background-color: white;
+  border: 1px solid orange;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 

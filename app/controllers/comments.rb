@@ -18,6 +18,7 @@ get '/questions/:id/comments/new' do
 end
 
 post '/questions/:question_id/comments' do
+	redirect "/questions/#{params[:question_id]}" if !current_user
 	comment = Comment.new(description: params[:comment],
 												commentable: Question.find_by(id: params[:question_id]),
 												author_id: session[:user_id]
