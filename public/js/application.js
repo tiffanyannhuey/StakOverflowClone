@@ -134,8 +134,6 @@ $(document).ready(function() {
 		var form = $(this).closest('form');
 		var route = form.attr('action');
 		var formData = form.serialize();
-		console.log(route);
-		console.log(formData);
 
 		$.ajax({
 			url: route,
@@ -143,12 +141,9 @@ $(document).ready(function() {
 			data: formData
 		})
 		.done(function(response){
-			console.log(response);
 			var newComment = $(response);
-			console.log(newComment);
-			console.log(form.siblings());
 			form.siblings(".comments").append(newComment);
-
+			form.find(".comment-text-input").val("");
 		})
 		.fail(function(response){
 			console.log("failed");
