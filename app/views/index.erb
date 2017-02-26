@@ -19,6 +19,7 @@
       <div class="author">Author: <a href=<%= "/users/#{question.author.id}" %>><%= question.author.username %></a></div>
         <div class="sneak-peak">
           <%= question.sneak_peak %>
+          <a class="read-more" href=<%= "/questions/#{question.id}" %>>Read more</a>
         </div>
       </div>
     </div>

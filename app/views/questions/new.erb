@@ -1,17 +1,16 @@
 <div class="content">
 
-<h1>Ask a question</h1>
+<h1 id="new-question-header">Ask a question</h1>
   <% if @errors %>
     <% @errors.each do |error| %>
       <p class="errors"><%= error %></p>
     <% end %> 
   <% end %>
 <form class="question-form" action="/questions" method="post" >
-<label class="label">Title:</label>
-<input type="text" name="question[title]" value=<%= @question.title %> >
-<label class="label">Question:</label>
-<textarea class="form-textarea" cols="60" rows="20" name="question[description]"><%= @question.description %></textarea>
-<input type="submit" value="Ask!">
+
+<input class="new-question-title" placeholder="Title" type="text" name="question[title]" value=<%= @question.title %> >
+<textarea class="new-question-textarea" placeholder="Your question here..." cols="60" rows="20" name="question[description]"><%= @question.description %></textarea>
+<input class="new-question-submit" type="submit" value="Ask!">
 
 </form>
 
