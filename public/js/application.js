@@ -20,7 +20,6 @@ $(document).ready(function() {
 			data: loginData
 		})
 			.done(function(response){
-				console.log("SUCCESS")
 				$('body').html(response)
 			})
 			.fail(function(response){
@@ -33,39 +32,41 @@ $(document).ready(function() {
 
 	$('body').on('click', 'button.ask-btn', function(event){
 		event.preventDefault()
-		console.log("PREVENTED")
-		console.log($(this))
 		var askUrl = $(this).closest('a').attr('href')
 		$.ajax({
 			method: "GET",
 			url: askUrl
 		})
 			.done(function(response){
-				console.log(response)
 				$('nav').after(response)
 			})
 	})
 
 	$('body').on('submit', 'form.question-form', function(event){
 		event.preventDefault()
-		console.log("PREVENTED")
-		
+		var form = $(this)
+		console.log(form)
 		var questionData = $(this).serialize()
 		var questionUrl = $(this).attr('action')
-		console.log(questionUrl, questionData)
 		$.ajax({
 			method: "POST",
 			url: questionUrl,
 			data: questionData
 		})
 			.done(function(response){
-				console.log("SUCCESS", response)
+				form.trigger("reset")
+				form.hide()
+				console.log(response)
+				// $('div.content').append(response)
 			})
 			.fail(function(response){
-				// alert(response.responseText)
-			
+				response = JSON.parse(response.responseText)
+				response.errors.forEach(function(text){
+					var p = $('<p></p>')
+					p.html(text)
+					$('body').find('form').closest('div').find('h1').append(p)
+				}) 
 			})
-	
 	})
 
 
