@@ -7,8 +7,9 @@
     </span>
     <div><%= current_question.description %></div>
     <div class="author">Author: <a href=<%= "/users/#{current_question.author.id}" %>><%= current_question.author.username %></a></div>
-    <%= erb :'comments/questions', :locals => { :question => current_question } %>
   </div>
+    <%= erb :'comments/questions', :locals => { :question => current_question } %>
+  <h4 class="comments-header">Comments: <%= current_question.comments.count %></h4>
     <ul class="comments">
      <%= erb :'questions/_comments', :locals => { :commentable => current_question } %>
     </ul>

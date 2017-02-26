@@ -67,7 +67,8 @@ $(document).ready(function() {
 			})
 	
 	})
-
+	//=============================================================================
+	//Ajax voting
 
 	var voting = function(event){
 		event.preventDefault();
@@ -91,7 +92,6 @@ $(document).ready(function() {
 				arrow.closest("form").siblings("form").find(".upvoted, .downvoted").css("border-bottom-color", "#a1a1a1").css("border-top-color", "#a1a1a1");
 				arrow.css("border-bottom-color", "").css("border-top-color", "").removeClass().addClass(response["class_name"]);
 			})
-
 		} else {
 			//Tell them they need to be logged in
 			errorMessage(this);
@@ -110,5 +110,23 @@ $(document).ready(function() {
 	$('body').on('click', '.arrow-down-btn', voting);
 	$('body').on('click', '.upvoted',   	 voting);
 	$('body').on('click', '.downvoted',      voting);
+
+	//=================================================================================
+	//Ajax for leaving a comment
+	
+	$(".comments-header").before("<button class='comment-form-link'>Leave a comment</button>");
+	$(".comment-form").hide();
+
+	$('body').on('click', '.comment-form-link', function(event){
+		console.log("binded successfully");
+		console.log($(this));
+		console.log($(this).siblings());
+		event.preventDefault();
+		$(this).hide();
+		$(this).siblings("form.comment-form").slideDown();
+	})
+
+
+
 
 });

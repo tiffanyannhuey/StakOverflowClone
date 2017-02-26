@@ -25,7 +25,11 @@ a:hover{
   border-radius: 5px;
   border: none;
   padding: 4px;
+  background-color: #e8af3e; 
 }
+.comment-submit-input:hover{
+  background-color: orange;
+} 
 
 .ask-btn {
   margin-left: 5px;
@@ -230,6 +234,21 @@ button:focus {outline:0;}
   display: block;
   width: 99%;
   height: 45px;
+}
+
+.comment-form-link{
+  border: none;
+  border-radius: 3px;
+  background-color: #e8af3e;
+  color: black;
+  margin-top: 20px;
+  display: block;
+  width: 30%;
+  height: 25px;
+}
+
+.comment-form-link:hover{
+  background-color: orange;
 }
 
 .new-question-submit:focus{
