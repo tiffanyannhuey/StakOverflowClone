@@ -8,7 +8,7 @@
   <% end %>
 <form class="question-form" action="/questions" method="post" >
 
-<input class="new-question-title" placeholder="Title" type="text" name="question[title]" value=<%= @question.title %> >
+<input class="new-question-title" placeholder="Title" type="text" name="question[title]" value='<%= @question.title %>' >
 <textarea class="new-question-textarea" placeholder="Your question here..." cols="60" rows="20" name="question[description]"><%= @question.description %></textarea>
 <input class="new-question-submit" type="submit" value="Ask!">
 
