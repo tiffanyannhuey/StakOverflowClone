@@ -229,6 +229,10 @@ button:focus {outline:0;}
   margin:7px;
 }
 
+span {
+  position: relative;
+}
+
 .best-answer {
   padding: 20px;
   border: 0.5px solid #4b5159;
@@ -258,6 +262,16 @@ button:focus {outline:0;}
   background-color: white;
   border-bottom: 2px solid gray;
   margin: 0px;
+}
+
+.act-not-logged-in {
+  position: fixed;
+  left: 27%;
+  width: 50px;
+  background-color: white;
+  border: 1px solid orange;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 

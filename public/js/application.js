@@ -27,25 +27,35 @@ $(document).ready(function() {
 				method: "post"
 			})
 			.done(function(response){
-				// console.log(arrow.closest("form"));
-				// console.log(arrow.closest("form").siblings("form"));
-				// console.log(arrow.closest("form").siblings("form").find(".upvoted, .downvoted"));
+				response = JSON.parse(response);
+
+				//Update the new vote total
+				var voteDiv = arrow.closest("form").siblings(".vote-total");
+				var voteTotal = voteDiv.text();
+				voteDiv.text(response["vote_total"])
+
+				// Reset the css and inline styles
 				arrow.closest("form").siblings("form").find(".upvoted, .downvoted").css("border-bottom-color", "#a1a1a1").css("border-top-color", "#a1a1a1");
-				// console.log(arrow);
-				// console.log(response);
-				arrow.css("border-bottom-color", "").css("border-top-color", "").removeClass().addClass(response);
+				arrow.css("border-bottom-color", "").css("border-top-color", "").removeClass().addClass(response["class_name"]);
 			})
 
 		} else {
 			//Tell them they need to be logged in
-			console.log("Not logged in");
-			$(this).closest("form").append("<div class='vote-not-logged-in'>You need to be logged in to vote</div>")
+			errorMessage(this);
 		}
 	}
+
+	var errorMessage = function(object){
+		$(object).append("<div class='act-not-logged-in'>You need to be logged in to do that</div>");
+		var message = $(object).find('.act-not-logged-in');
+		message.css("top", ( $(object).offset().top - $(document).scrollTop() ) )
+		message.fadeOut(3000, function(){message.remove()});
+	};
 
 	// Dynamically bind to all possible classes the arrows can have
 	$('body').on('click', '.arrow-up-btn',   voting);
 	$('body').on('click', '.arrow-down-btn', voting);
 	$('body').on('click', '.upvoted',   	 voting);
 	$('body').on('click', '.downvoted',      voting);
+	
 });
