@@ -21,10 +21,26 @@ a:hover{
 
 }
 
+input:focus{
+  outline: .5px solid orange;
+}
+
+.comment-text-input:focus{
+  outline: .5px solid orange;
+} 
+
 .comment-submit-input {
   border-radius: 5px;
   border: none;
   padding: 4px;
+  background-color: #e8af3e; 
+}
+.comment-submit-input:hover{
+  background-color: orange;
+} 
+
+.comment-submit-input:focus{
+  outline:none;
 }
 
 .ask-btn {
@@ -203,7 +219,7 @@ button:focus {outline:0;}
   outline: .5px solid orange;
 }
 
-.new-question-textarea{
+.new-question-textarea, .new-answer-textarea{
   border: none;
   display: block;
   margin: auto;
@@ -211,7 +227,7 @@ button:focus {outline:0;}
   padding: 10px;
 }
 
-.new-question-textarea:focus{
+.new-question-textarea:focus, .new-answer-textarea:focus{
   outline: .5px solid orange;
 }
 
@@ -221,7 +237,7 @@ button:focus {outline:0;}
   text-align: center;
 }
 
-.new-question-submit{
+.new-question-submit, .new-answer-submit{
   border: none;
   border-radius: 3px;
   background-color: #e8af3e;
@@ -230,6 +246,21 @@ button:focus {outline:0;}
   display: block;
   width: 99%;
   height: 45px;
+}
+
+.comment-form-link{
+  border: none;
+  border-radius: 3px;
+  background-color: #e8af3e;
+  color: black;
+  margin-top: 20px;
+  display: block;
+  width: 30%;
+  height: 25px;
+}
+
+.comment-form-link:hover{
+  background-color: orange;
 }
 
 .new-question-submit:focus{
@@ -331,14 +362,54 @@ span {
   margin: 0px;
 }
 
-.act-not-logged-in {
+.error-alert {
   position: fixed;
   left: 27%;
-  width: 50px;
+  width: 70px;
+  font-size: 13px;
   background-color: white;
   border: 1px solid orange;
   padding: 5px;
   border-radius: 5px;
+}
+
+.login-container, .signup-container{
+  border: 1px solid orange;
+  background-color: white;
+  width: 20%
+  margin: auto;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.login-header, .signup-header{
+  font-size: 20px;
+  margin:auto;
+  text-align: center;
+}
+
+.login-email, .signup-email, .signup-username{
+  height: 20px;
+  margin: 2px auto;
+  display: block;
+}
+
+.login-password, .signup-password{
+  height: 20px;
+  margin: 2px auto;
+  display: block;
+}
+
+.login-submit, .signup-submit{
+  margin: auto;
+  display: block;
+  background-color: #e8af3e; 
+  border: none;
+  border-radius: 5px;
+} 
+
+.login-submit:hover{
+  background-color: orange;
 }
 
 
