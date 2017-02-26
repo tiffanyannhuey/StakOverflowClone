@@ -1,19 +1,17 @@
 <div class="content">
-<h1>Please enter your login credentials:</h1>
+<div class="login-container">
+  <h1 class="login-header">Please enter your login credentials:</h1>
   <% if @error %>
     <p class="errors"><%= @error %></p>
   <% end %>
   <form id="login" action="/login" method="post">
-    <label for="user[email]">Email:</label>
-    <input type="email" name="user[email]"></input><br>
+    
+  <input class="login-email" type="email" name="user[email]" placeholder="Email"></input><br>
+  <input class="login-password" type="password" name="user[password]" placeholder="Password"></input><br>
 
-    <label for="user[password]">Password:</label>
-    <input type="password" name="user[password]"></input><br>
-
-    <input id="login_submit"type="submit" value="Click to log in.">
+  <input class="login-submit" id="login_submit"type="submit" value="Login">
 
   </form>
-
-  <a href="/users/new">Sign Up!</a>
+</div>
 
 </div>

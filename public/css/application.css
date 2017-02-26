@@ -21,6 +21,10 @@ a:hover{
 
 }
 
+input:focus{
+  outline: .5px solid orange;
+}
+
 .comment-text-input:focus{
   outline: .5px solid orange;
 } 
@@ -367,6 +371,45 @@ span {
   border: 1px solid orange;
   padding: 5px;
   border-radius: 5px;
+}
+
+.login-container{
+  border: 1px solid orange;
+  background-color: white;
+  width: 20%
+  margin: auto;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.login-header{
+  font-size: 20px;
+  margin:auto;
+  text-align: center;
+}
+
+.login-email{
+  height: 20px;
+  margin: 2px auto;
+  display: block;
+}
+
+.login-password{
+  height: 20px;
+  margin: 2px auto;
+  display: block;
+}
+
+.login-submit{
+  margin: auto;
+  display: block;
+  background-color: #e8af3e; 
+  border: none;
+  border-radius: 5px;
+} 
+
+.login-submit:hover{
+  background-color: orange;
 }
 
 
