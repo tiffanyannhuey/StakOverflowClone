@@ -373,7 +373,7 @@ span {
   border-radius: 5px;
 }
 
-.login-container{
+.login-container, .signup-container{
   border: 1px solid orange;
   background-color: white;
   width: 20%
@@ -382,25 +382,25 @@ span {
   margin-bottom: 15px;
 }
 
-.login-header{
+.login-header, .signup-header{
   font-size: 20px;
   margin:auto;
   text-align: center;
 }
 
-.login-email{
+.login-email, .signup-email, .signup-username{
   height: 20px;
   margin: 2px auto;
   display: block;
 }
 
-.login-password{
+.login-password, .signup-password{
   height: 20px;
   margin: 2px auto;
   display: block;
 }
 
-.login-submit{
+.login-submit, .signup-submit{
   margin: auto;
   display: block;
   background-color: #e8af3e; 
