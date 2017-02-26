@@ -113,19 +113,24 @@ $(document).ready(function() {
     event.preventDefault();
     var answer = $(this).serialize()
     var route = $(this).attr('action');
-    // var answ
-    $.ajax({
-      url: route, 
-      method: "POST",
-      data: answer
-    })
 
-    .done(function(response){
-      console.log(response)
-      // console.log(response);
-      $(".answers").append(response);
-      $("textarea[name=description]").val('');
-    })
+    if($(this).find(".new-answer-textarea").val() != ""){
+	    // var answ
+	    $.ajax({
+	      url: route, 
+	      method: "POST",
+	      data: answer
+	    })
+
+	    .done(function(response){
+	      console.log(response)
+	      // console.log(response);
+	      $(".answers").append(response);
+	      $("textarea[name=description]").val('');
+	    })
+	}else{
+		errorMessage(this, "Answer must not be blank")
+	}
 
   })
 

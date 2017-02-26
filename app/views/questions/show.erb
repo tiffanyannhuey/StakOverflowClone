@@ -67,8 +67,9 @@
     <% end %>
     </ul>
   </div>
-
-  <%= erb(:"/answers/new") %>
+  <% if current_user %>
+    <%= erb(:"/answers/new") %>
+  <% end %>
 </div>
 
 

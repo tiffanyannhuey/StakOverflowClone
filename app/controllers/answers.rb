@@ -16,10 +16,10 @@ post '/questions/:id/answers' do
     erb :'answers/answers-partial', layout: false
   else
     puts "NOT JQUERY " * 10
-    if answer && currently_logged_in? 
+    if @answer && currently_logged_in?
       puts "VALID ANSWER " * 10
-      answer.author_id = user.id
-      answer.save
+      @answer.author_id = user.id
+      @answer.save
       redirect "/questions/#{question.id}"
     else
       @answer_error = "There was an issue submitting your answer. Please log in and try again."
