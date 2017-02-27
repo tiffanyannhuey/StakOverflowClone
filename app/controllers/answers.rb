@@ -8,18 +8,24 @@ post '/questions/:id/answers' do
   puts params[:description]
   @answer = Answer.new(description: params[:description], question_id: question.id  )
   puts "OUTSIDE " * 10
-  if @answer && currently_logged_in? && request.xhr? 
-    puts "INSIDE WITH JQUERY " * 10
-    @answer.author_id = user.id
-    @answer.save
-    puts @answer.inspect
-    erb :'answers/answers-partial', layout: false
+  if request.xhr? 
+    if @answer && currently_logged_in?
+      status 200
+      puts "INSIDE WITH JQUERY " * 10
+      @answer.author_id = user.id
+      @answer.save
+      puts @answer.inspect
+      erb :'answers/answers-partial', layout: false
+    else
+      status 422
+      "Answer cannot be posted"
+    end
   else
     puts "NOT JQUERY " * 10
-    if answer && currently_logged_in? 
+    if @answer && currently_logged_in? 
       puts "VALID ANSWER " * 10
-      answer.author_id = user.id
-      answer.save
+      @answer.author_id = user.id
+      @answer.save
       redirect "/questions/#{question.id}"
     else
       @answer_error = "There was an issue submitting your answer. Please log in and try again."
