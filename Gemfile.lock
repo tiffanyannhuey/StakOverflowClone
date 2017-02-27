@@ -90,6 +90,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86_64-darwin-15
 
 DEPENDENCIES
   activerecord
@@ -109,4 +110,4 @@ DEPENDENCIES
   thin
 
 BUNDLED WITH
-   1.14.4
+   1.14.5
