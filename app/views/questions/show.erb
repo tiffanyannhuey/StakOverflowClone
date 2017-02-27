@@ -67,7 +67,9 @@
     <% end %>
     </ul>
   </div>
-
+  <% if @answer_error %>
+    <p><%= @answer_error %></p>
+  <% end %>
   <%= erb(:"/answers/new") %>
 </div>
 

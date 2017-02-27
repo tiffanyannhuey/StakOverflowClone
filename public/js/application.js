@@ -127,6 +127,10 @@ $(document).ready(function() {
       $(".answers").append(response);
       $("textarea[name=description]").val('');
     })
+    .fail(function(errorMessage){
+    	console.log(errorMessage)
+    	alert(errorMessage.responseText);
+    })
 
   })
 
